@@ -6,17 +6,6 @@
 	// =======================
 	var dialogStateArray;
 
-	$(function() {
-		dialogStateArray = <?php echo json_encode($_SESSION['dialog']); ?>;
-	// if (dialogStateArray){
-			// $( ".dialog" ).dialog( "option", "autoOpen", false );
-		// }
-		// else{
-			// $( ".dialog" ).dialog( "option", "autoOpen", true );
-		// }
-	});
-
-
 	// ============================
 	//	Function for everything to do with the dialog window (in dialog.php).
 	// ============================
@@ -67,7 +56,17 @@
 			});
 	});
 
-
+	// ============================
+	//	Functions that opens the dialog window with php.info
+	//	if the corresponding session variable is set to "open"
+	//  (so that the window state remains the same on reload)
+	// ============================
+	$(function() {
+		dialogStateArray = <?php echo json_encode($_SESSION['dialog']); ?>;
+		if (dialogStateArray === "open"){
+			$( "#dialog" ).dialog( "open" );
+		}
+	});
 	
 		
 	// ============================
