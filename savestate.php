@@ -21,11 +21,12 @@
 	// ============================
 	if (isset($_POST['dialog'])){
 			$_SESSION['dialog'] = $_POST['dialog'];
-		}
+		} else {else {$_SESSION['dialog'] = "closed";
+	}
 	if (isset($_POST['menu'])){
 			$_SESSION['menu'] = $_POST['menu'];
 		} else {$_SESSION['menu'] = "closed";
-			}
+	}
 
 	
 /* 		if (isset($_REQUEST['name']))

@@ -31,7 +31,7 @@
 						})
 						.done(function( data ) {
 							// Pop-Up window for displaying the current state of the variable
-							alert( "Dialog state: " + dialogStateArray);
+							//alert( "Dialog state: " + dialogStateArray);
 						});
 				}
 			});
@@ -122,7 +122,8 @@
 		}
 		else $( '#menudiv' ).hide();
 	}
-		
+
 		// NOTE: hide/show: can be done automatically with "toggle" - don't need an if/else
-	
-	</script>
+
+
+</script>

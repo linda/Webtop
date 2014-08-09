@@ -28,10 +28,10 @@
 	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
 	<title>Linda's Webtop</title>
 	<link rel="stylesheet" type="text/css" href="webtopstyle.css">
-	<link href="css/ui-lightness/jquery-ui-1.10.4.custom.css" rel="stylesheet">
-	<script src="js/jquery-1.10.2.js"></script>
-	<script src="js/jquery-ui-1.10.4.custom.js"></script>
-	
+	<link href="../css/ui-lightness/jquery-ui-1.10.4.custom.css" rel="stylesheet">
+	<script src="../js/jquery-1.10.2.js"></script>
+	<script src="../js/jquery-ui-1.10.4.custom.js"></script>
+
 	<?php
 		include 'application.php';
 		fb($_SESSION, "SESSION-Array: ");
@@ -96,5 +96,6 @@
 			include 'taskleiste.php';
 		}
 	?>
+
 </body>
 </html>
