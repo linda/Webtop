@@ -22,13 +22,18 @@
 	if (isset($_POST['dialog'])){
 			$_SESSION['dialog'] = $_POST['dialog'];
 		}
+	if (isset($_POST['menu'])){
+			$_SESSION['menu'] = $_POST['menu'];
+		} else {$_SESSION['menu'] = "closed";
+			}
 
 	
 /* 		if (isset($_REQUEST['name']))
 			echo $_REQUEST['name'];
 		else echo 'No request array here'; */
 	$dialog=$_SESSION['dialog'];
-	$return = ["dialog"=>$dialog];
+	$menu=$_SESSION['menu'];
+	$return = ["dialog"=>$dialog, "menu"=>$menu];
 
 	fb($_SESSION, "Mein SESSION-Array");
 

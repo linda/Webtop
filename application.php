@@ -50,9 +50,9 @@
 					data: { dialog: "open" },
 					dataType: "text"
 					})
-					.done(function( data ) {
-						alert ("Opened it! ");
-					});
+					// .done(function( data ) {
+						// alert ("Opened it! ");
+					// });
 			});
 	});
 
@@ -65,6 +65,18 @@
 		dialogStateArray = <?php echo json_encode($_SESSION['dialog']); ?>;
 		if (dialogStateArray === "open"){
 			$( "#dialog" ).dialog( "open" );
+		}
+	});
+
+	// ============================
+	//	Functions that the menu
+	//	if the corresponding session variable is set to "open"
+	//  (so that the window state remains the same on reload)
+	// ============================
+	$(function() {
+		menuStateArray = <?php echo json_encode($_SESSION['menu']); ?>;
+		if (menuStateArray === "open"){
+			$( '#menudiv' ).show();
 		}
 	});
 	
@@ -92,7 +104,7 @@
 	// });
 	
 	// ============================
-	// 	Functions for the startmenu
+	// 	Functions for the startmenu. Is called by onClick on the "Start" paragraph.
 	// =======================
 	$(function() {
 		$( "#menu" ).menu();
@@ -101,6 +113,12 @@
 		if($( "#menudiv" ).css( "display" )=='none')
 		{
 			$( '#menudiv' ).show();
+			$.ajax({
+				type: "POST",
+				url: "savestate.php",
+				data: { menu: "open" },
+				dataType: "text"
+				})
 		}
 		else $( '#menudiv' ).hide();
 	}
