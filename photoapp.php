@@ -1,6 +1,6 @@
 <html>
 <head>
-	<!-- Later include all this via php -->
+
 
 	<!-- jQuery library -->
 	<script type="text/javascript" src="../fancybox/jquery-1.11.1.min.js"></script>
@@ -25,14 +25,6 @@
 			$(".gallery").fancybox();
 		});
 
-		
-		// ============================
-		// 	Popup window for the photo app.
-		// =======================
-		function newPopup(url) {
-			popupWindow = window.open(
-				url,'popUpWindow','height=700,width=800,left=10,top=10,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no,status=yes')
-		}	
 	</script>
 	
 </head>
