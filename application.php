@@ -73,6 +73,9 @@
 	//	if the corresponding session variable is set to "open"
 	//  (so that the window state remains the same on reload)
 	// ============================
+	
+	var menuStateArray;
+	
 	$(function() {
 		menuStateArray = <?php echo json_encode($_SESSION['menu']); ?>;
 		if (menuStateArray === "open"){
