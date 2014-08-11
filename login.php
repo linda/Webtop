@@ -37,7 +37,7 @@
 
 			if ( authenticateuser($who, $how) == TRUE) {
 				$_SESSION['username'] = $who;
-				$_SESSION['dialog'] = "true";
+//				$_SESSION['dialog'] = "true";
 				header( 'Location: webtop.php' ) ;
 
 				} else $wronglogin = 'Wrong username and password combination. ';

@@ -35,7 +35,6 @@
 	<?php
 		include 'application.php';
 		fb($_SESSION, "SESSION-Array: ");
-
 	?>
 
 </head>

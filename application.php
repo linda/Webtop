@@ -22,7 +22,6 @@
 			//	On closing the dialog, send ajax request to save new state of the window:
 			// ============================			
 				close: function() {
-					alert (dialogStateArray);
 					$.ajax({
 						type: "POST",
 						url: "savestate.php",
@@ -60,7 +59,9 @@
 	//	Functions that opens the dialog window with php.info
 	//	if the corresponding session variable is set to "open"
 	//  (so that the window state remains the same on reload)
+	//	TODO: fix
 	// ============================
+
 	$(function() {
 		dialogStateArray = <?php echo json_encode($_SESSION['dialog']); ?>;
 		if (dialogStateArray === "open"){
@@ -72,16 +73,17 @@
 	//	Functions that the menu
 	//	if the corresponding session variable is set to "open"
 	//  (so that the window state remains the same on reload)
+	//	Does not yet work before first Ajax request is sent.
 	// ============================
 	
-	var menuStateArray;
+	// var menuStateArray;
 	
-	$(function() {
-		menuStateArray = <?php echo json_encode($_SESSION['menu']); ?>;
-		if (menuStateArray === "open"){
-			$( '#menudiv' ).show();
-		}
-	});
+	// $(function() {
+		// menuStateArray = <?php echo json_encode($_SESSION['menu']); ?>;
+		// if (menuStateArray === "open"){
+			// $( '#menudiv' ).show();
+		// }
+	// });
 	
 		
 	// ============================

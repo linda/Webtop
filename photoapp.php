@@ -1,6 +1,9 @@
+<?php
+	session_start();
+?>
+
 <html>
 <head>
-
 
 	<!-- jQuery library -->
 	<script type="text/javascript" src="../fancybox/jquery-1.11.1.min.js"></script>
