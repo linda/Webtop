@@ -19,6 +19,10 @@
 
 	<script type="text/javascript" src="../fancybox/source/helpers/jquery.fancybox-media.js"></script>
 
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+	<title>Linda's Webtop - Photo App</title>
+	<link rel="stylesheet" type="text/css" href="webtopstyle.css">
+
 	<script>
 			
 		// ============================
