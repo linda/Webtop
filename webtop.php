@@ -1,6 +1,9 @@
 <?php
 	session_start();
-	
+
+	// ============================
+	// FirePHP core pages for easier debugging.
+	// ============================	
 	require_once('FirePHPCore/FirePHP.class.php');
 	ob_start();
 	require_once('FirePHPCore/fb.php');
@@ -16,10 +19,14 @@
 	else if(isset($_POST['username'])){
 		setcookie('username', "");
 	}
-	
+
+	// ============================
+	// 	Default values set for session variables that save
+	//	state of the application; all windows set to closed etc.
+	// ============================
 	if (isset($_SESSION['username'])){
 		if(!isset($_SESSION['dialog'])){
-			$_SESSION['dialog']=false;
+			$_SESSION['dialog']="closed";
 		}
 	}
 	
@@ -41,8 +48,6 @@
 
 </head>
 <body>
-<input type="hidden" value=0 id="hiddenfield1">
-
 	<div id="login">
 		<?php
 			if($_SESSION==NULL){
