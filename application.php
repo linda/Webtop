@@ -3,7 +3,7 @@
 	//	Global variable that saves the state of the dialog window (open or closed,
 	// or true or false)
 	// =======================
-	var dialogStateArray = "bla";
+	var dialogStateArray;
 
 	$(function() {
 		$.ajax({
@@ -69,10 +69,13 @@
 	//	Functions that opens the dialog window with php.info
 	//	if the corresponding session variable is set to "open"
 	//  (so that the window state remains the same on reload)
-	//	TODO: fix
+	//	Set to $( window ).load so it is executed after the other
+	//	function and dialogStateArray isn't given several contracting values
+	//	during the page load
+	//	TODO: test more
 	// ============================
 
-	$(function() {
+	$( window ).load(function() {
 		if (dialogStateArray === "open"){
 			$( "#dialog" ).dialog( "open" );
 		}

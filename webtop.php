@@ -19,7 +19,7 @@
 	
 	if (isset($_SESSION['username'])){
 		if(!isset($_SESSION['dialog'])){
-			$_SESSION['dialog']="closed";
+			$_SESSION['dialog']=false;
 		}
 	}
 	
