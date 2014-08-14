@@ -21,7 +21,7 @@
 						<td><input type="password" name="password"></td>
 					</tr>
 					<tr>
-						<td colspan="2"><input type="checkbox" name="stayloggedin" value="ja"> Eingelogged bleiben?</td>
+						<td colspan="2"><input type="checkbox" name="stayloggedin" value="ja"> Eingeloged bleiben?</td>
 					</tr>
 				</table>
 

@@ -17,6 +17,11 @@
 		setcookie('username', "");
 	}
 	
+	if (isset($_SESSION['username'])){
+		if(!isset($_SESSION['dialog'])){
+			$_SESSION['dialog']="closed";
+		}
+	}
 	
 	fb($_SESSION, "Mein SESSION-Array");
 ?>
@@ -31,37 +36,38 @@
 	<link href="../css/ui-lightness/jquery-ui-1.10.4.custom.css" rel="stylesheet">
 	<script src="../js/jquery-1.10.2.js"></script>
 	<script src="../js/jquery-ui-1.10.4.custom.js"></script>
+<!--	<script src="application.js"></script> -->
 
-	<?php
-		include 'application.php';
-		fb($_SESSION, "SESSION-Array: ");
-	?>
 
 </head>
 <body>
-<input type="hidden" value=0 id="someID">
+<input type="hidden" value=0 id="hiddenfield1">
 
 	<div id="login">
 		<?php
 			if($_SESSION==NULL){
 				include 'login.php';
 			}
-//			else{
-//				include 'logout.php';
-//			}
 		?>
 	</div>
 	<p id="top">
 		<?php
 		if(isset($_SESSION['username']) ){
 			echo 'Hi ' . $_SESSION['username'] . '!';
-		} elseif ($_POST!=NULL){
+		} elseif (isset($_POST['username'])){
 				echo $wronglogin . '<br>' . ' No-one is logged in';} else {
 					echo 'No-one is logged in. ';
 					}
 		?>
 	</p>
 
+	<?php
+	if(isset($_SESSION['username']) ){
+		include 'application.php';
+	}
+		fb($_SESSION, "SESSION-Array: ");
+	?>
+	
 	<div id="dialog" title="About PHP">
 		<?php
 			if (isset($_SESSION['username'])){

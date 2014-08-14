@@ -21,17 +21,13 @@
 	// ============================
 	if (isset($_POST['dialog'])){
 			$_SESSION['dialog'] = $_POST['dialog'];
-		} else {$_SESSION['dialog'] = "closed";
+//		} else {$_SESSION['dialog'] = "closed";
 	}
-	if (isset($_POST['menu'])){
+//	if (isset($_POST['menu'])){
 			$_SESSION['menu'] = $_POST['menu'];
-		} else {$_SESSION['menu'] = "closed";
-	}
+//		} else {$_SESSION['menu'] = "closed";
+//	}
 
-	
-/* 		if (isset($_REQUEST['name']))
-			echo $_REQUEST['name'];
-		else echo 'No request array here'; */
 	$dialog=$_SESSION['dialog'];
 	$menu=$_SESSION['menu'];
 	$return = ["dialog"=>$dialog, "menu"=>$menu];
@@ -43,7 +39,7 @@
 	
 	
 	
-	<div class="dialog">
+	<div ID="returnValue">
 		<?php echo json_encode($return); ?>
 	</div>
 </body>

@@ -1,11 +1,22 @@
 <script>
-
 	// ============================
 	//	Global variable that saves the state of the dialog window (open or closed,
 	// or true or false)
 	// =======================
-	var dialogStateArray;
+	var dialogStateArray = "bla";
 
+	$(function() {
+		$.ajax({
+			type: "GET",
+			url: "savestate.php",
+			data: "",
+			dataType: "text"
+		})
+		.done(function() {
+			dialogStateArray = <?php echo json_encode($_SESSION['dialog']); ?>;
+		});
+	});
+	
 	// ============================
 	//	Function for everything to do with the dialog window (in dialog.php).
 	// ============================
@@ -28,10 +39,9 @@
 						data: { dialog: "closed" },
 						dataType: "text"
 						})
-						.done(function( data ) {
-							// Pop-Up window for displaying the current state of the variable
-							//alert( "Dialog state: " + dialogStateArray);
-						});
+						// .done(function( data ) {
+							// dialogStateArray = <?php echo json_encode($_SESSION['dialog']); ?>;	
+						// });
 				}
 			});
 			// ============================
@@ -50,7 +60,7 @@
 					dataType: "text"
 					})
 					// .done(function( data ) {
-						// alert ("Opened it! ");
+						// dialogStateArray = <?php echo json_encode($_SESSION['dialog']); ?>;	
 					// });
 			});
 	});
@@ -63,14 +73,16 @@
 	// ============================
 
 	$(function() {
-		dialogStateArray = <?php echo json_encode($_SESSION['dialog']); ?>;
 		if (dialogStateArray === "open"){
 			$( "#dialog" ).dialog( "open" );
 		}
 	});
 
+
+
+
 	// ============================
-	//	Functions that the menu
+	//	Functions that opens the menu upon page load
 	//	if the corresponding session variable is set to "open"
 	//  (so that the window state remains the same on reload)
 	//	Does not yet work before first Ajax request is sent.
@@ -78,12 +90,7 @@
 	
 	// var menuStateArray;
 	
-	// $(function() {
-		// menuStateArray = <?php echo json_encode($_SESSION['menu']); ?>;
-		// if (menuStateArray === "open"){
-			// $( '#menudiv' ).show();
-		// }
-	// });
+
 	
 		
 	// ============================
