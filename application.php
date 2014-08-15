@@ -1,7 +1,7 @@
 <script>
 	// ============================
-	//	Global variable that saves the state of the dialog window (open or closed,
-	// or true or false)
+	//	Global variable that saves the state of the dialog window (open or closed).
+	//	Function that loads the current state from the session variable upon page load
 	// =======================
 	var dialogStateArray;
 
@@ -66,35 +66,23 @@
 	});
 
 	// ============================
-	//	Functions that opens the dialog window with php.info
-	//	if the corresponding session variable is set to "open"
-	//  (so that the window state remains the same on reload)
-	//	Set to $( window ).load so it is executed after the other
-	//	function and dialogStateArray isn't given several contracting values
-	//	during the page load
+	//	Functions that opens the dialog window with php.info if the corresponding session variable 
+	//	is set to "open" (so that the window state remains the same on reload)
+	//	Set to $( window ).load so it is executed after the other functions 
 	//	TODO: test more
 	// ============================
-
 	$( window ).load(function() {
 		if (dialogStateArray === "open"){
 			$( "#dialog" ).dialog( "open" );
 		}
 	});
 
-
-
-
 	// ============================
-	//	Functions that opens the menu upon page load
-	//	if the corresponding session variable is set to "open"
-	//  (so that the window state remains the same on reload)
-	//	Does not yet work before first Ajax request is sent.
+	//	Functions that opens the menu upon page load if the corresponding
+	//	session variable is set to "open"
 	// ============================
 	
 	// var menuStateArray;
-	
-
-	
 		
 	// ============================
 	//	Functions for the dialog window with user info (in userdaten.php)
@@ -110,6 +98,7 @@
 		});
 	});
 
+	
 	$(function() {
 		$( ".draggable" ).draggable();
 	});
