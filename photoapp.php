@@ -36,13 +36,13 @@
 	
 </head>
 
-
-<a class="gallery" rel="group" href="images/herbstcampus017.jpg" title="Campus Wien im Herbst">
-	<img src="images/herbstcampus017_small.jpg" alt="" />
-</a>
-<a class="gallery" rel="group" href="images/herbstcampus012.jpg" title="Campus Wien im Herbst bis">
-	<img src="images/herbstcampus012_small.jpg" alt="" />
-</a>
-
+<div ID="tumbnails">
+	<a class="gallery" rel="group" href="images/herbstcampus017.jpg" title="Campus Wien im Herbst">
+		<img src="images/herbstcampus017_small.jpg" alt="" />
+	</a>
+	<a class="gallery" rel="group" href="images/herbstcampus012.jpg" title="Campus Wien im Herbst bis">
+		<img src="images/herbstcampus012_small.jpg" alt="" />
+	</a>
+</div>
 </body>
 </html>

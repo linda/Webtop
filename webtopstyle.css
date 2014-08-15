@@ -76,4 +76,10 @@ div#menudiv{
 	bottom: 100px;
 }
 
+div#tumbnails{
+	margin: 20px auto auto 20px;
+}
 
+div#tumbnails img {
+	padding: 10px 10px 10px 10px;
+}
