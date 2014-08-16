@@ -59,9 +59,6 @@
 					data: { dialog: "open" },
 					dataType: "text"
 					})
-					// .done(function( data ) {
-						// dialogStateArray = <?php echo json_encode($_SESSION['dialog']); ?>;	
-					// });
 			});
 	});
 
@@ -97,15 +94,19 @@
 			$( "#userdaten" ).dialog( "open" );
 		});
 	});
-
 	
 	$(function() {
-		$( ".draggable" ).draggable();
+		$( ".draggable" ).draggable({
+			stop: function(event, ui) {
+				$.ajax({
+					type: "POST",
+					url: "savestate.php",
+					data: {left: ui.position.left, top: ui.position.top},
+					dataType: "text"
+					})
+			}
+		});
 	});
-
-	// $( ".draggable" ).draggable({
-		// stop: function( event, ui ) {}
-	// });
 	
 	// ============================
 	// 	Functions for the startmenu. Is called by onClick on the "Start" paragraph.
@@ -126,11 +127,9 @@
 		}
 		else $( '#menudiv' ).hide();
 	}
-
-		// NOTE: hide/show: can be done automatically with "toggle" - don't need an if/else
-		
 		// ============================
-		// 	Popup window for the photo app.
+		// 	Popup window for the photo app (is attached to one of the icons; TODO
+		//	have the app open on double-click, not as a link)
 		// =======================
 		function newPopup(url) {
 			popupWindow = window.open(

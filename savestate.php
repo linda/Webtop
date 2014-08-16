@@ -15,30 +15,16 @@
 	<?php
 		session_start();
 		fb($_POST, "Mein POST-Array");
-	// ============================
-	//	Dialog opened or closed
-	// ============================
-	if (isset($_POST['dialog'])){
-			$_SESSION['dialog'] = $_POST['dialog'];
-//		} else {$_SESSION['dialog'] = "closed";
-	}
-//	if (isset($_POST['menu'])){
-			$_SESSION['menu'] = $_POST['menu'];
-//		} else {$_SESSION['menu'] = "closed";
-//	}
+		// ============================
+		//	Passing values from POST to SESSION-Array
+		// ============================
+		if (isset($_POST['dialog'])){
+				$_SESSION['dialog'] = $_POST['dialog'];
+		}
+		// if (isset($_POST['icon1'])){
+				// $_SESSION['dialog'] = $_POST['dialog'];
+		// }
 
-	// ============================
-	//	Bellow code for easy output of the session variables
-	//	as a json object; not necessary at this time
-	// ============================
-	$dialog=$_SESSION['dialog'];
-	$menu=$_SESSION['menu'];
-	$return = ["dialog"=>$dialog, "menu"=>$menu];
-
-	fb($_SESSION, "Mein SESSION-Array");
 	?>
-	<div ID="returnValue">
-		<?php echo json_encode($return); ?>
-	</div>
 </body>
 </html>

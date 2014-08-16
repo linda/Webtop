@@ -6,10 +6,9 @@
 	fb($_FILES, "FILES-Array: ");
 
 	// ============================
-	// Directory the files are uploaded to needs to be "images";
-	// not included in the github repo.
+	// Directory "images" not included in the github repo.
 	// ============================	
-	$path = "images/" . $_FILES['picture']['name'];
+	$path = "images/" . uniqid() . ".JPG";
 	if (move_uploaded_file($_FILES['picture']['tmp_name'], $path)){
 		echo "Upload to " . $path . " successful!";
 	}

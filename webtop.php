@@ -22,11 +22,14 @@
 
 	// ============================
 	// 	Default values set for session variables that save
-	//	state of the application; all windows set to closed etc.
+	//	state of the applications; all windows set to closed etc.
 	// ============================
 	if (isset($_SESSION['username'])){
 		if(!isset($_SESSION['dialog'])){
 			$_SESSION['dialog']="closed";
+		}
+		if(!isset($_SESSION['icon1'])){
+			$_SESSION['icon1']=['left'=>0, 'top'=>0];
 		}
 	}
 	
