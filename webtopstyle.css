@@ -83,3 +83,7 @@ div#tumbnails{
 div#tumbnails img {
 	padding: 10px 10px 10px 10px;
 }
+
+div#uploadForm{
+	margin-left: 30px;
+}
