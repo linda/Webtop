@@ -1,10 +1,13 @@
 <script>
 	// ============================
-	//	Global variable that saves the state of the dialog window (open or closed).
-	//	Function that loads the current state from the session variable upon page load
+	//	Global variables.
 	// =======================
 	var dialogStateArray;
-
+	var icon1Position;
+	
+	// ============================
+	//	Function that loads the current state from the session variables upon page load
+	// =======================	
 	$(function() {
 		$.ajax({
 			type: "GET",
@@ -14,6 +17,7 @@
 		})
 		.done(function() {
 			dialogStateArray = <?php echo json_encode($_SESSION['dialog']); ?>;
+			icon1Position = <?php echo json_encode($_SESSION['icon1']); ?>;
 		});
 	});
 	
@@ -72,6 +76,8 @@
 		if (dialogStateArray === "open"){
 			$( "#dialog" ).dialog( "open" );
 		}
+		$( ".draggable.useropener" ).position().left = '50';
+		alert ($( ".draggable.useropener" ).position().left);
 	});
 
 	// ============================
@@ -94,14 +100,19 @@
 			$( "#userdaten" ).dialog( "open" );
 		});
 	});
-	
+
+	// ============================
+	// 	Function for draggable elements (icons); defined by the "draggable"
+	//	class, so same action for all four icons.
+	//	TODO: change (ideally generalise the ajax request to a function to be called every time).
+	// =======================	
 	$(function() {
 		$( ".draggable" ).draggable({
 			stop: function(event, ui) {
 				$.ajax({
 					type: "POST",
 					url: "savestate.php",
-					data: {left: ui.position.left, top: ui.position.top},
+					data: {icon1: {left: ui.position.left, top: ui.position.top}},
 					dataType: "text"
 					})
 			}
