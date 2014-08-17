@@ -76,8 +76,7 @@
 		if (dialogStateArray === "open"){
 			$( "#dialog" ).dialog( "open" );
 		}
-		$( ".draggable.useropener" ).position().left = '50';
-		alert ($( ".draggable.useropener" ).position().left);
+		$( ".draggable.useropener" ).css("left", icon1Position.left + "px");
 	});
 
 	// ============================

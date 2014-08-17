@@ -21,9 +21,9 @@
 		if (isset($_POST['dialog'])){
 				$_SESSION['dialog'] = $_POST['dialog'];
 		}
-		// if (isset($_POST['icon1'])){
-				// $_SESSION['dialog'] = $_POST['dialog'];
-		// }
+		if (isset($_POST['icon1'])){
+				$_SESSION['icon1'] = $_POST['icon1'];
+		}
 
 	?>
 </body>
