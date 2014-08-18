@@ -31,15 +31,15 @@
 		if(!isset($_SESSION['boxbot'])){
 			$_SESSION['boxbot']=['left'=>0, 'top'=>0];
 		}
-		// if(!isset($_SESSION['vase1'])){
-			// $_SESSION['vase1']=['left'=>0, 'top'=>0];
-		// }
-		// if(!isset($_SESSION['vase2'])){
-			// $_SESSION['vase2']=['left'=>0, 'top'=>0];
-		// }
-		// if(!isset($_SESSION['vase3'])){
-			// $_SESSION['vase3']=['left'=>0, 'top'=>0];
-		// }
+		if(!isset($_SESSION['vase1'])){
+			$_SESSION['vase1']=['left'=>0, 'top'=>0];
+		}
+		if(!isset($_SESSION['vase2'])){
+			$_SESSION['vase2']=['left'=>0, 'top'=>0];
+		}
+		if(!isset($_SESSION['vase3'])){
+			$_SESSION['vase3']=['left'=>0, 'top'=>0];
+		}
 
 	}
 	

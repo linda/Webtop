@@ -3,8 +3,6 @@
 	//	Global variables.
 	// =======================
 	var dialogStateArray;
-	// var boxbotLeft;
-	// var boxbotTop;
 	var boxbotPosition;
 	var vase1Position;
 	var vase2Position;
@@ -23,7 +21,9 @@
 		.done(function() {
 			dialogStateArray = <?php echo json_encode($_SESSION['dialog']); ?>;
 			boxbotPosition = <?php echo json_encode($_SESSION['boxbot']); ?>;
-
+			vase1Position = <?php echo json_encode($_SESSION['vase1']); ?>;
+			vase2Position = <?php echo json_encode($_SESSION['vase2']); ?>;
+			vase3Position = <?php echo json_encode($_SESSION['vase3']); ?>;
 		});
 	});
 	
@@ -82,8 +82,10 @@
 		if (dialogStateArray === "open"){
 			$( "#dialog" ).dialog( "open" );
 		}
-		$( ".draggable.useropener" ).css("left", boxbotPosition.left + "px");
-		alert(boxbotPosition.left);
+		$( "#boxbot" ).css("left", boxbotPosition.left + "px", "top", boxbotPosition.top + "px");
+		$( "#vase1" ).css("left", vase1Position.left + "px", "top", vase1Position.top + "px");
+		$( "#vase2" ).css("left", vase2Position.left + "px", "top", vase2Position.top + "px");
+		$( "#vase3" ).css("left", vase3Position.left + "px", "top", vase3Position.top + "px");
 	});
 
 	// ============================
@@ -109,21 +111,47 @@
 
 	// ============================
 	// 	Function for draggable elements (icons); defined by the "draggable"
-	//	class, so same action for all four icons.
-	//	TODO: change (ideally generalise the ajax request to a function to be called every time).
+	//	class.
+	//	Individual ajax requests per icon; TODO: generalise to a function
 	// =======================	
 	$(function() {
 		$( ".draggable" ).draggable({
-			stop: function(event, ui) {
-				$.ajax({
-					type: "POST",
-					url: "savestate.php",
-					data: {boxbot: {left: ui.position.left, top: ui.position.top}},
-					dataType: "text"
-					})
-			}
 		});
+
+		$( "#boxbot" ).on( "dragstop", function( event, ui ) {
+			$.ajax({
+				type: "POST",
+				url: "savestate.php",
+				data: {boxbot: {left: ui.position.left, top: ui.position.top}},
+				dataType: "text"
+				})
+		} );
+		$( "#vase1" ).on( "dragstop", function( event, ui ) {
+			$.ajax({
+				type: "POST",
+				url: "savestate.php",
+				data: {vase1: {left: ui.position.left, top: ui.position.top}},
+				dataType: "text"
+				})
+		} );
+		$( "#vase2" ).on( "dragstop", function( event, ui ) {
+			$.ajax({
+				type: "POST",
+				url: "savestate.php",
+				data: {vase2: {left: ui.position.left, top: ui.position.top}},
+				dataType: "text"
+				})
+		} );
+		$( "#vase3" ).on( "dragstop", function( event, ui ) {
+			$.ajax({
+				type: "POST",
+				url: "savestate.php",
+				data: {vase3: {left: ui.position.left, top: ui.position.top}},
+				dataType: "text"
+				})
+		} );
 	});
+	
 	
 	// ============================
 	// 	Functions for the startmenu. Is called by onClick on the "Start" paragraph.
