@@ -82,8 +82,8 @@
 	// ============================
 	//	Functions for restoring state of windows, icons position from sessions variables
 	//	upon reload of the page.
-	//	Set to $( window ).load so it is executed after the other functions 
-	//	TODO: test more
+	//	Set to $( window ).load so it is executed after the other functions
+	//	(this means there might be a noticeable delay before everything returns to desired position)
 	// ============================
 	$( window ).load(function() {
 		if (dialogOpen === "true"){
@@ -99,10 +99,9 @@
 	// ============================
 	//	Functions that opens the menu upon page load if the corresponding
 	//	session variable is set to "open"
+	//	Removed for now because not sure if needed?
 	// ============================
-	
-	// var menuStateArray;
-		
+			
 	// ============================
 	//	Functions for the dialog window with user info (in userdaten.php)
 	// =======================		
