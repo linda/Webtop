@@ -170,12 +170,12 @@
 		if($( "#menudiv" ).css( "display" )=='none')
 		{
 			$( '#menudiv' ).show();
-			$.ajax({
-				type: "POST",
-				url: "savestate.php",
-				data: { menu: "open" },
-				dataType: "text"
-				})
+			// $.ajax({
+				// type: "POST",
+				// url: "savestate.php",
+				// data: { menu: "open" },
+				// dataType: "text"
+				// })
 		}
 		else $( '#menudiv' ).hide();
 	}
