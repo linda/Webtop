@@ -2,7 +2,8 @@
 	// ============================
 	//	Global variables.
 	// =======================
-	var dialogStateArray;
+	var dialogOpen;
+	var dialogPosition;
 	var boxbotPosition;
 	var vase1Position;
 	var vase2Position;
@@ -19,7 +20,8 @@
 			dataType: "text"
 		})
 		.done(function() {
-			dialogStateArray = <?php echo json_encode($_SESSION['dialog']); ?>;
+			dialogOpen = <?php echo json_encode($_SESSION['dialogOpen']); ?>;
+			dialogPosition = <?php echo json_encode($_SESSION['dialogPosition']); ?>;
 			boxbotPosition = <?php echo json_encode($_SESSION['boxbot']); ?>;
 			vase1Position = <?php echo json_encode($_SESSION['vase1']); ?>;
 			vase2Position = <?php echo json_encode($_SESSION['vase2']); ?>;
@@ -46,12 +48,17 @@
 					$.ajax({
 						type: "POST",
 						url: "savestate.php",
-						data: { dialog: "closed" },
+						data: { dialogOpen: false },
 						dataType: "text"
 						})
-						// .done(function( data ) {
-							// dialogStateArray = <?php echo json_encode($_SESSION['dialog']); ?>;	
-						// });
+				},
+				dragStop: function( event, ui ) {
+					$.ajax({
+						type: "POST",
+						url: "savestate.php",
+						data: { dialogPosition: {left: ui.position.left, top: ui.position.top}},
+						dataType: "text"
+						})
 				}
 			});
 			// ============================
@@ -66,7 +73,7 @@
 				$.ajax({
 					type: "POST",
 					url: "savestate.php",
-					data: { dialog: "open" },
+					data: { dialogOpen: true},
 					dataType: "text"
 					})
 			});
@@ -79,13 +86,14 @@
 	//	TODO: test more
 	// ============================
 	$( window ).load(function() {
-		if (dialogStateArray === "open"){
+		if (dialogOpen === "true"){
 			$( "#dialog" ).dialog( "open" );
 		}
-		$( "#boxbot" ).css("left", boxbotPosition.left + "px", "top", boxbotPosition.top + "px");
-		$( "#vase1" ).css("left", vase1Position.left + "px", "top", vase1Position.top + "px");
-		$( "#vase2" ).css("left", vase2Position.left + "px", "top", vase2Position.top + "px");
-		$( "#vase3" ).css("left", vase3Position.left + "px", "top", vase3Position.top + "px");
+		$( "#dialog" ).parent().css({"left": dialogPosition.left + "px", "top": dialogPosition.top + "px"});
+		$( "#boxbot" ).css({"left": boxbotPosition.left + "px", "top": boxbotPosition.top + "px"});
+		$( "#vase1" ).css({"left": vase1Position.left + "px", "top": vase1Position.top + "px"});
+		$( "#vase2" ).css({"left": vase2Position.left + "px", "top": vase2Position.top + "px"});
+		$( "#vase3" ).css({"left": vase3Position.left + "px", "top": vase3Position.top + "px"});
 	});
 
 	// ============================
