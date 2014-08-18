@@ -28,9 +28,19 @@
 		if(!isset($_SESSION['dialog'])){
 			$_SESSION['dialog']="closed";
 		}
-		if(!isset($_SESSION['icon1'])){
-			$_SESSION['icon1']=['left'=>0, 'top'=>0];
+		if(!isset($_SESSION['boxbot'])){
+			$_SESSION['boxbot']=['left'=>0, 'top'=>0];
 		}
+		// if(!isset($_SESSION['vase1'])){
+			// $_SESSION['vase1']=['left'=>0, 'top'=>0];
+		// }
+		// if(!isset($_SESSION['vase2'])){
+			// $_SESSION['vase2']=['left'=>0, 'top'=>0];
+		// }
+		// if(!isset($_SESSION['vase3'])){
+			// $_SESSION['vase3']=['left'=>0, 'top'=>0];
+		// }
+
 	}
 	
 	fb($_SESSION, "Mein SESSION-Array");
@@ -68,13 +78,6 @@
 					}
 		?>
 	</p>
-
-	<?php
-	if(isset($_SESSION['username']) ){
-		include 'application.php';
-	}
-		fb($_SESSION, "SESSION-Array: ");
-	?>
 	
 	<div id="dialog" title="About PHP">
 		<?php
@@ -97,6 +100,14 @@
 		}
 		?>
 	</div>
+	<?php
+	if(isset($_SESSION['username']) ){
+		include 'application.php';
+	}
+		fb($_SESSION, "SESSION-Array: ");
+	?>
+
+
 	<div id="menudiv">
 	<?php
 		if (isset($_SESSION['username'])){

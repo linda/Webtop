@@ -21,10 +21,21 @@
 		if (isset($_POST['dialog'])){
 				$_SESSION['dialog'] = $_POST['dialog'];
 		}
-		if (isset($_POST['icon1'])){
-				$_SESSION['icon1'] = $_POST['icon1'];
+		if (isset($_POST['boxbot'])){
+				$_SESSION['boxbot'] = $_POST['boxbot'];
+		}
+		if (isset($_POST['vase1'])){
+				$_SESSION['vase1'] = $_POST['vase1'];
+		}
+		if (isset($_POST['vase2'])){
+				$_SESSION['vase2'] = $_POST['vase2'];
+		}
+		if (isset($_POST['vase3'])){
+				$_SESSION['vase3'] = $_POST['vase3'];
 		}
 
 	?>
+	<?php echo json_encode($_SESSION['vase2']); ?>;
+	
 </body>
 </html>

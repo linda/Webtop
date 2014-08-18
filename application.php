@@ -3,7 +3,12 @@
 	//	Global variables.
 	// =======================
 	var dialogStateArray;
-	var icon1Position;
+	// var boxbotLeft;
+	// var boxbotTop;
+	var boxbotPosition;
+	var vase1Position;
+	var vase2Position;
+	var vase3Position;
 	
 	// ============================
 	//	Function that loads the current state from the session variables upon page load
@@ -17,7 +22,8 @@
 		})
 		.done(function() {
 			dialogStateArray = <?php echo json_encode($_SESSION['dialog']); ?>;
-			icon1Position = <?php echo json_encode($_SESSION['icon1']); ?>;
+			boxbotPosition = <?php echo json_encode($_SESSION['boxbot']); ?>;
+
 		});
 	});
 	
@@ -67,8 +73,8 @@
 	});
 
 	// ============================
-	//	Functions that opens the dialog window with php.info if the corresponding session variable 
-	//	is set to "open" (so that the window state remains the same on reload)
+	//	Functions for restoring state of windows, icons position from sessions variables
+	//	upon reload of the page.
 	//	Set to $( window ).load so it is executed after the other functions 
 	//	TODO: test more
 	// ============================
@@ -76,7 +82,8 @@
 		if (dialogStateArray === "open"){
 			$( "#dialog" ).dialog( "open" );
 		}
-		$( ".draggable.useropener" ).css("left", icon1Position.left + "px");
+		$( ".draggable.useropener" ).css("left", boxbotPosition.left + "px");
+		alert(boxbotPosition.left);
 	});
 
 	// ============================
@@ -111,7 +118,7 @@
 				$.ajax({
 					type: "POST",
 					url: "savestate.php",
-					data: {icon1: {left: ui.position.left, top: ui.position.top}},
+					data: {boxbot: {left: ui.position.left, top: ui.position.top}},
 					dataType: "text"
 					})
 			}
