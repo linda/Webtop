@@ -51,16 +51,14 @@
 	
 	while ($image = readdir($imagesDir)){
 		if ($image != '.' && $image != '..'){
-			echo '<img src="images/' . $image . '"alt="" />';
+			echo '<a class="gallery" rel="gallery" href="images/' . $image . '" title="Campus Wien im Herbst">
+			<img src="images/' . $image . '" alt="" />
+			</a>';
 		}
 	}
+	
+	closedir($imagesDir);
 ?>
-<!--		<a class="gallery" rel="gallery" href="images/herbstcampus017.jpg" title="Campus Wien im Herbst">
-			<img src="images/herbstcampus017.jpg" alt="" />
-		</a>
-		<a class="gallery" rel="gallery" href="images/herbstcampus012.jpg" title="Campus Wien im Herbst bis">
-			<img src="images/herbstcampus012.jpg" alt="" />
-		</a>
 	</div>
 	<div id="uploadForm">
 		<form enctype="multipart/form-data" method="post" action="upload.php">
@@ -68,6 +66,6 @@
 			<input type="submit" value="Upload File">
 		</form>
 	</div> 
--->
+
 </body>
 </html>
