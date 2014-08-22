@@ -42,7 +42,20 @@
 </head>
 <body>
 	<div ID="tumbnails">
-		<a class="gallery" rel="gallery" href="images/herbstcampus017.jpg" title="Campus Wien im Herbst">
+<?php
+	$imagesDir = opendir("images/");
+	// if ($imagesDir)
+		// echo "Opened succesfully!";
+	// else
+		// echo "No directory opened";
+	
+	while ($image = readdir($imagesDir)){
+		if ($image != '.' && $image != '..'){
+			echo '<img src="images/' . $image . '"alt="" />';
+		}
+	}
+?>
+<!--		<a class="gallery" rel="gallery" href="images/herbstcampus017.jpg" title="Campus Wien im Herbst">
 			<img src="images/herbstcampus017.jpg" alt="" />
 		</a>
 		<a class="gallery" rel="gallery" href="images/herbstcampus012.jpg" title="Campus Wien im Herbst bis">
@@ -55,5 +68,6 @@
 			<input type="submit" value="Upload File">
 		</form>
 	</div> 
+-->
 </body>
 </html>
