@@ -9,11 +9,17 @@
 	// Directory "images" not included in the github repo.
 	// ============================	
 	$path = "images/" . uniqid() . ".JPG";
-	if (move_uploaded_file($_FILES['picture']['tmp_name'], $path)){
+	
+	
+	$fileupload=$_FILES['picture'];
+	if( !$fileupload['error'] && $fileupload['size']>0
+		&& $fileupload['tmp_name']
+		&& is_uploaded_file($fileupload['tmp_name'] )
+		&& ($fileupload['type'] == 'image/jpeg')
+		&& move_uploaded_file($fileupload['tmp_name'], $path)
+	)
 		echo "Upload to " . $path . " successful!";
-	}
 	else{
-		echo "No upload";
+		echo "No upload for you";
 	}
-
 ?>
