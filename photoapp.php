@@ -34,26 +34,33 @@
 		// 	Include fancyBox.
 		// =======================
 		$(document).ready(function() {
-			$(".gallery").fancybox();
+			$(".gallery").fancybox({
+				helpers:  {
+					thumbs : {
+						width: 50,
+						height: 50
+					}
+				}
+			});
 		});
 
 	</script>
 	
 </head>
 <body>
-	<div ID="tumbnails">
-		<a class="gallery" rel="group" href="images/herbstcampus017.jpg" title="Campus Wien im Herbst">
-			<img src="images/herbstcampus017_small.jpg" alt="" />
+<!--	<div ID="tumbnails"> -->
+		<a class="gallery" rel="gallery" href="images/herbstcampus017.jpg" title="Campus Wien im Herbst">
+			<img src="images/herbstcampus017.jpg" alt="" />
 		</a>
-		<a class="gallery" rel="group" href="images/herbstcampus012.jpg" title="Campus Wien im Herbst bis">
-			<img src="images/herbstcampus012_small.jpg" alt="" />
+		<a class="gallery" rel="gallery" href="images/herbstcampus012.jpg" title="Campus Wien im Herbst bis">
+			<img src="images/herbstcampus012.jpg" alt="" />
 		</a>
-	</div>
+<!--	</div> -->
 	<div id="uploadForm">
 		<form enctype="multipart/form-data" method="post" action="upload.php">
 			File to upload: <input type="file" name="picture"><br>
 			<input type="submit" value="Upload File">
 		</form>
-	</div>
+	</div> 
 </body>
 </html>
