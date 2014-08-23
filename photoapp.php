@@ -44,10 +44,6 @@
 	<div ID="tumbnails">
 <?php
 	$imagesDir = opendir("images/");
-	// if ($imagesDir)
-		// echo "Opened succesfully!";
-	// else
-		// echo "No directory opened";
 	
 	while ($image = readdir($imagesDir)){
 		if ($image != '.' && $image != '..'){

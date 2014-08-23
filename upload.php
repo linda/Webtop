@@ -6,20 +6,24 @@
 	fb($_FILES, "FILES-Array: ");
 
 	// ============================
-	// Directory "images" not included in the github repo.
+	// Directory "images" not included on github repo.
 	// ============================	
-	$path = "images/" . uniqid() . ".JPG";
-	
-	
 	$fileupload=$_FILES['picture'];
+
+	$path = "images/" . uniqid() . ".JPG";
+
+	
 	if( !$fileupload['error'] && $fileupload['size']>0
 		&& $fileupload['tmp_name']
+		// && $whitelist
 		&& is_uploaded_file($fileupload['tmp_name'] )
-		&& ($fileupload['type'] == 'image/jpeg')
+		&& ( ($fileupload['type'] == 'image/jpeg') || ($fileupload['type'] == 'image/gif') || ($fileupload['type'] == 'image/png'))
 		&& move_uploaded_file($fileupload['tmp_name'], $path)
 	)
 		echo "Upload to " . $path . " successful!";
 	else{
 		echo "No upload for you";
 	}
+	header( 'Location: photoapp.php' ) ;
+
 ?>

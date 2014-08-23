@@ -96,6 +96,8 @@
 				autoOpen: false,
 				height: 400,
 				width: 670,
+				left: 200,
+				top: 100,
 			// ============================
 			//	On closing the dialog, send ajax request to save new state of the window:
 			// ============================			
