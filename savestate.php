@@ -18,11 +18,17 @@
 		// ============================
 		//	Passing values from POST to SESSION-Array
 		// ============================
-		if (isset($_POST['dialogOpen'])){
-				$_SESSION['dialogOpen'] = $_POST['dialogOpen'];
+		if (isset($_POST['infoDialogOpen'])){
+				$_SESSION['infoDialogOpen'] = $_POST['infoDialogOpen'];
 		}
-		if (isset($_POST['dialogPosition'])){
-				$_SESSION['dialogPosition'] = $_POST['dialogPosition'];
+		if (isset($_POST['infoDialogPosition'])){
+				$_SESSION['infoDialogPosition'] = $_POST['infoDialogPosition'];
+		}
+		if (isset($_POST['photoDialogOpen'])){
+				$_SESSION['photoDialogOpen'] = $_POST['photoDialogOpen'];
+		}
+		if (isset($_POST['photoDialogPosition'])){
+				$_SESSION['photoDialogPosition'] = $_POST['photoDialogPosition'];
 		}
 		if (isset($_POST['boxbot'])){
 				$_SESSION['boxbot'] = $_POST['boxbot'];
@@ -38,7 +44,6 @@
 		}
 
 	?>
-	<?php echo json_encode($_SESSION['dialog']); ?>;
 	
 </body>
 </html>

@@ -25,11 +25,17 @@
 	//	state of the applications; all windows set to closed etc.
 	// ============================
 	if (isset($_SESSION['username'])){
-		if(!isset($_SESSION['dialogOpen'])){
-			$_SESSION['dialogOpen']=['open'=>false];
+		if(!isset($_SESSION['infoDialogOpen'])){
+			$_SESSION['infoDialogOpen']=['open'=>false];
 		}
-		if(!isset($_SESSION['dialogPosition'])){
-			$_SESSION['dialogPosition']=['left'=>0, 'top'=>0];
+		if(!isset($_SESSION['infoDialogPosition'])){
+			$_SESSION['infoDialogPosition']=['left'=>0, 'top'=>0];
+		}
+		if(!isset($_SESSION['photoDialogOpen'])){
+			$_SESSION['photoDialogOpen']=['open'=>false];
+		}
+		if(!isset($_SESSION['photoDialogPosition'])){
+			$_SESSION['photoDialogPosition']=['left'=>0, 'top'=>0];
 		}
 		if(!isset($_SESSION['boxbot'])){
 			$_SESSION['boxbot']=['left'=>0, 'top'=>0];
@@ -81,14 +87,6 @@
 					}
 		?>
 	</p>
-	
-	<div id="dialog" title="About PHP">
-		<?php
-			if (isset($_SESSION['username'])){
-				include 'dialog.php';
-			}
-		?>
-	</div>
 	<div id="userdaten" title="Ihre Daten">
 		<?php
 			if (isset($_SESSION['username'])){
@@ -123,6 +121,19 @@
 			include 'taskleiste.php';
 		}
 	?>
+	<div id="infoDialog" class="dialog">
+		<?php
+			if (isset($_SESSION['username'])){
+				include 'dialog.php';
+			}
+		?>
+	<div id="photoDialog" class="dialog">
+		<?php
+			if (isset($_SESSION['username'])){
+				include 'photoDialog.php';
+			}
+		?>
+	</div>
 
 </body>
 </html>

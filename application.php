@@ -2,12 +2,19 @@
 	// ============================
 	//	Global variables.
 	// =======================
-	var dialogOpen;
-	var dialogPosition;
+	var infoDialogOpen;
+	var infoDialogPosition;
+	var ohotoDialogOpen;
+	var photoDialogPosition;
 	var boxbotPosition;
 	var vase1Position;
 	var vase2Position;
 	var vase3Position;
+
+	// ============================
+	//	Function for generalising the Ajax request upon dragstop
+	// ============================
+
 	
 	// ============================
 	//	Function that loads the current state from the session variables upon page load
@@ -20,8 +27,10 @@
 			dataType: "text"
 		})
 		.done(function() {
-			dialogOpen = <?php echo json_encode($_SESSION['dialogOpen']); ?>;
-			dialogPosition = <?php echo json_encode($_SESSION['dialogPosition']); ?>;
+			infoDialogOpen = <?php echo json_encode($_SESSION['infoDialogOpen']); ?>;
+			infoDialogPosition = <?php echo json_encode($_SESSION['infoDialogPosition']); ?>;
+			photoDialogOpen = <?php echo json_encode($_SESSION['photoDialogOpen']); ?>;
+			photoDialogPosition = <?php echo json_encode($_SESSION['photoDialogPosition']); ?>;
 			boxbotPosition = <?php echo json_encode($_SESSION['boxbot']); ?>;
 			vase1Position = <?php echo json_encode($_SESSION['vase1']); ?>;
 			vase2Position = <?php echo json_encode($_SESSION['vase2']); ?>;
@@ -30,14 +39,14 @@
 	});
 	
 	// ============================
-	//	Function for everything to do with the dialog window (in dialog.php).
+	//	Function for everything to do with the dialog containing info.php into (in dialog.php).
 	// ============================
 	$(function() {
 	
 		// ============================
 		//	Settings for the dialog window with php info
 		// =======================
-			$( "#dialog" ).dialog({
+			$( "#infoDialog" ).dialog({
 				autoOpen: false,
 				height: 400,
 				width: 670,
@@ -48,7 +57,7 @@
 					$.ajax({
 						type: "POST",
 						url: "savestate.php",
-						data: { dialogOpen: false },
+						data: { infoDialogOpen: false },
 						dataType: "text"
 						})
 				},
@@ -56,7 +65,7 @@
 					$.ajax({
 						type: "POST",
 						url: "savestate.php",
-						data: { dialogPosition: {left: ui.position.left, top: ui.position.top}},
+						data: { infoDialogPosition: {left: ui.position.left, top: ui.position.top}},
 						dataType: "text"
 						})
 				}
@@ -68,17 +77,64 @@
 			//		where is will be saved in session vars
 			// ============================
 
-			$( ".opener" ).dblclick(function() {
-				$( "#dialog" ).dialog( "open" );
+			$( "#vase1" ).dblclick(function() {
+				$( "#infoDialog" ).dialog( "open" );
 				$.ajax({
 					type: "POST",
 					url: "savestate.php",
-					data: { dialogOpen: true},
+					data: { infoDialogOpen: true},
 					dataType: "text"
 					})
 			});
 	});
 
+	// ============================
+	//	Function for everything to do with the dialog containing the photo app.
+	// ============================
+	$(function() {
+			$( "#photoDialog" ).dialog({
+				autoOpen: false,
+				height: 400,
+				width: 670,
+			// ============================
+			//	On closing the dialog, send ajax request to save new state of the window:
+			// ============================			
+				close: function() {
+					$.ajax({
+						type: "POST",
+						url: "savestate.php",
+						data: { photoDialogOpen: false },
+						dataType: "text"
+						})
+				},
+				dragStop: function( event, ui ) {
+					$.ajax({
+						type: "POST",
+						url: "savestate.php",
+						data: { photoDialogPosition: {left: ui.position.left, top: ui.position.top}},
+						dataType: "text"
+						})
+				}
+			});
+			// ============================
+			//	Functions when there is a double-click on one of the icons:
+			//  1) The dialog window is opened
+			//  2) Ajax request is sent to save the new state in savestate.php
+			//		where is will be saved in session vars
+			// ============================
+
+			$( "#vase2" ).dblclick(function() {
+				$( "#photoDialog" ).dialog( "open" );
+				$.ajax({
+					type: "POST",
+					url: "savestate.php",
+					data: { photoDialogOpen: true},
+					dataType: "text"
+					})
+			});
+	});	
+	
+	
 	// ============================
 	//	Functions for restoring state of windows, icons position from sessions variables
 	//	upon reload of the page.
@@ -86,22 +142,21 @@
 	//	(this means there might be a noticeable delay before everything returns to desired position)
 	// ============================
 	$( window ).load(function() {
-		if (dialogOpen === "true"){
-			$( "#dialog" ).dialog( "open" );
+		if (infoDialogOpen === "true"){
+			$( "#infoDialog" ).dialog( "open" );
 		}
-		$( "#dialog" ).parent().css({"left": dialogPosition.left + "px", "top": dialogPosition.top + "px"});
+		if (photoDialogOpen === "true"){
+			$( "#photoDialog" ).dialog( "open" );
+		}
+		$( "#infoDialog" ).parent().css({"left": infoDialogPosition.left + "px", "top": infoDialogPosition.top + "px"});
+		$( "#photoDialog" ).parent().css({"left": photoDialogPosition.left + "px", "top": photoDialogPosition.top + "px"});
 		$( "#boxbot" ).css({"left": boxbotPosition.left + "px", "top": boxbotPosition.top + "px"});
 		$( "#vase1" ).css({"left": vase1Position.left + "px", "top": vase1Position.top + "px"});
 		$( "#vase2" ).css({"left": vase2Position.left + "px", "top": vase2Position.top + "px"});
 		$( "#vase3" ).css({"left": vase3Position.left + "px", "top": vase3Position.top + "px"});
 	});
 
-	// ============================
-	//	Functions that opens the menu upon page load if the corresponding
-	//	session variable is set to "open"
-	//	Removed for now because not sure if needed?
-	// ============================
-			
+
 	// ============================
 	//	Functions for the dialog window with user info (in userdaten.php)
 	// =======================		
@@ -170,22 +225,8 @@
 		if($( "#menudiv" ).css( "display" )=='none')
 		{
 			$( '#menudiv' ).show();
-			// $.ajax({
-				// type: "POST",
-				// url: "savestate.php",
-				// data: { menu: "open" },
-				// dataType: "text"
-				// })
 		}
 		else $( '#menudiv' ).hide();
 	}
-		// ============================
-		// 	Popup window for the photo app (is attached to one of the icons; TODO
-		//	have the app open on double-click, not as a link)
-		// =======================
-		function newPopup(url) {
-			popupWindow = window.open(
-				url,'popUpWindow','height=700,width=800,left=10,top=10,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no,status=yes')
-		}	
 
 </script>
