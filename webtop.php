@@ -1,6 +1,15 @@
 <?php
 	session_start();
-
+	
+	// $db = mysqli_connect( 'localhost', 'root', '', 'webtop' );	
+	// if (mysqli_connect_errno() == 0){
+		// echo "connection works";
+	// }
+	// else {
+		// echo 'no connection';
+	// }
+	
+//	$db->close();
 	// ============================
 	// FirePHP core pages for easier debugging.
 	// ============================	

@@ -12,6 +12,10 @@
 
 	<!-- jQuery library -->
 	<script type="text/javascript" src="../fancybox/jquery-1.11.1.min.js"></script>
+
+	<!-- jQuery IU -->
+	<script src="../js/jquery-ui-1.10.4.custom.js"></script>
+
 	<!-- fancyBox -->
 	<link rel="stylesheet" href="../fancybox/source/jquery.fancybox.css" type="text/css" media="screen" />
 	<script type="text/javascript" src="../fancybox/source/jquery.fancybox.pack.js"></script>
@@ -27,14 +31,23 @@
 	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
 	<title>Linda's Webtop - Photo App</title>
 	<link rel="stylesheet" type="text/css" href="webtopstyle.css">
-
-	<script>
-			
+	
+	<script>	
 		// ============================
 		// 	Include fancyBox.
 		// =======================
 		$(document).ready(function() {
 			$(".gallery").fancybox();
+		});
+		// ============================
+		// 	droppable function
+		// =======================
+		$(function() {
+			$( "#droppable" ).droppable({
+				drop: function( event, ui ) {
+					alert("dropped!");
+				}
+			});
 		});
 
 	</script>
@@ -47,12 +60,11 @@
 	
 	while ($image = readdir($imagesDir)){
 		if ($image != '.' && $image != '..'){
-			echo '<a class="gallery" rel="gallery" href="images/' . $image . '" title="Campus Wien im Herbst">
+			echo '<a class="gallery" rel="gallery" href="images/' . $image . '" title="Campus Wien im Herbst.">
 			<img src="images/' . $image . '" alt="" />
 			</a>';
 		}
 	}
-	
 	closedir($imagesDir);
 ?>
 	</div>
@@ -62,6 +74,8 @@
 			<input type="submit" value="Upload File">
 		</form>
 	</div> 
-
+	<div id="dragFilesHere" class="ui-widget-header">
+	
+	</div>
 </body>
 </html>

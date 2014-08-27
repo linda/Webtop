@@ -88,4 +88,13 @@ div#tumbnails img {
 
 div#uploadForm{
 	margin-left: 30px;
+	margin-bottom: 20px;
+}
+
+div#dragFilesHere{
+	height: 140px;
+	width: 140px;
+	background-color: white;
+	margin-left: 30px;
+	margin-bottom: 50px;
 }
