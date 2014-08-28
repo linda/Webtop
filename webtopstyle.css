@@ -15,6 +15,10 @@ body{
 	color: white;
 }
 
+a {
+	color: white;
+}
+
 p#top{
 	padding: 10px;
 }

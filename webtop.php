@@ -9,7 +9,6 @@
 		// echo 'no connection';
 	// }
 	
-//	$db->close();
 	// ============================
 	// FirePHP core pages for easier debugging.
 	// ============================	

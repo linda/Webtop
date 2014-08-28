@@ -63,6 +63,7 @@
 			echo '<a class="gallery" rel="gallery" href="images/' . $image . '" title="Campus Wien im Herbst.">
 			<img src="images/' . $image . '" alt="" />
 			</a>';
+			echo '<a href="delete.php?delete=' . $image.'">Delete</a> <a href="">Edit</a>';
 		}
 	}
 	closedir($imagesDir);
