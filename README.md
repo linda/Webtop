@@ -3,6 +3,6 @@ Webtop
 
 Webtechnologien 2 Übungen
 
-Not included in the githib repo:
+Not included on github repo:
 - images folder
 - jquery, jqueryIU, and fancybox files
