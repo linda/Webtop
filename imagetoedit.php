@@ -7,13 +7,17 @@
 
 
 	// ============================
-	// Create a php image from a JPEG image.
+	// Load a JPEG image.
 	// ============================
 	
 	$imagename = "images/" . $_GET['edit'];
 	
 	$im = @imagecreatefromjpeg($imagename);
 	
+	if(!$im)
+	{
+		$im = ImageCreate (200, 200);
+	}
 	header ("Content-type: image/JPEG");
 	imagejpeg($im);
 ?>
