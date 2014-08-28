@@ -37,7 +37,7 @@
 			$_SESSION['infoDialogOpen']=['open'=>false];
 		}
 		if(!isset($_SESSION['infoDialogPosition'])){
-			$_SESSION['infoDialogPosition']=['left'=>0, 'top'=>0];
+			$_SESSION['infoDialogPosition']=['left'=>200, 'top'=>100];
 		}
 		if(!isset($_SESSION['photoDialogOpen'])){
 			$_SESSION['photoDialogOpen']=['open'=>false];
