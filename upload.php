@@ -22,9 +22,14 @@
 		&& ((strtolower($imageEnding) == 'jpg') || (strtolower($imageEnding) == 'jpeg') || (strtolower($imageEnding) == 'gif') || (strtolower($imageEnding) == 'png'))
 		&& move_uploaded_file($fileupload['tmp_name'], $path)
 	)
+	{
 		echo "Upload to " . $path . " successful!";
-	else{
+		// Can I use header('Location:') like that?
+		header( 'Location: photoapp.php?success=true' ) ;
+	}
+	else {
 		echo "No upload for you";
+		header( 'Location: photoapp.php?success=false' ) ;
 	}
 //	header( 'Location: photoapp.php' ) ;
 

@@ -54,6 +54,15 @@
 	
 </head>
 <body>
+<?php
+	if(isset($_GET['success']))
+	{
+		if($_GET['success'] == "true")
+			echo "<p id='top'>Upload worked!</p>";
+		else
+			echo "<p id='top'>Upload didn't work.</p>";
+	}
+?>
 	<div ID="tumbnails">
 <?php
 	$imagesDir = opendir("images/");
