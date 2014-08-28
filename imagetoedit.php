@@ -7,14 +7,13 @@
 
 
 	// ============================
-	// Edit the image sent by GET
+	// Create a php image from a JPEG image.
 	// ============================
 	
-	$imagetoedit = $_GET['edit'];
+	$imagename = "images/" . $_GET['edit'];
 	
-	echo "Page for editing this image: " . $imagetoedit . "<br>";
+	$im = @imagecreatefromjpeg($imagename);
 	
-	echo "<img src='imagetoedit.php?edit=$imagetoedit'>";
-	
-	echo "<br>There could be buttons here!";
+	header ("Content-type: image/JPEG");
+	imagejpeg($im);
 ?>
