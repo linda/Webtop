@@ -1,13 +1,37 @@
 <?php
 		function authenticateuser($user, $password){
+			$db = mysqli_connect( 'localhost', 'root', '', 'webtop' );
+			if (mysqli_connect_errno() == 0){
+				echo "connection works";
+			}
+			else {
+				echo 'no connection';
+			}
+			// ============================
+			// If possible later replace this simple authentication with one using LDAP
+			// ============================	
 			if( ($user == "Marie") && ($password == "aramis") ){
 				return TRUE;
 			}
-			else return FALSE;
+			// ============================
+			// Second step, look up in db
+			// ============================	
+			else
+			{
+				if(isset($db)){
+					$result = $db->query("Select * FROM user WHERE username ='$user'");
+					if($row = $result->fetch_object()){
+							if (md5($password) == $row->Password)
+								return TRUE;
+							else return FALSE;
+						}
+					else return FALSE;
+					}
+				else echo "what db?";
+				return FALSE;
+			}
 		}
 ?>
-
-
 		<form action="webtop.php" method="post">
 			<fieldset>
 				<legend>Login</legend>

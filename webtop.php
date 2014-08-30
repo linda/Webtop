@@ -1,12 +1,17 @@
 <?php
 	session_start();
-	
-	// $db = mysqli_connect( 'localhost', 'root', '', 'webtop' );	
+	// $db = mysqli_connect( 'localhost', 'root', '', 'webtop' );
 	// if (mysqli_connect_errno() == 0){
 		// echo "connection works";
 	// }
 	// else {
 		// echo 'no connection';
+	// }
+	// $result = $db->query("Select * from user");
+	// if($result){
+		// while($z= $result->fetch_object()){
+			// echo "<br>" .$z->Username;
+		// }
 	// }
 	
 	// ============================
@@ -61,6 +66,8 @@
 	}
 	
 	fb($_SESSION, "Mein SESSION-Array");
+	fb($_POST, "Mein POST-Array");
+
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 "http://www.w3.org/TR/html4/loose.dtd">
