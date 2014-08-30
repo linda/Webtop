@@ -13,7 +13,12 @@
 
 	if(unlink("images/" . $_GET['delete'])){
 		echo "Deleted images/" . $_GET['delete'];
+		header( 'Location: photoapp.php?deletion=true' ) ;
+
 	}
-	else echo "Couldn't delete images/ " . $_GET['delete'];
+	else {
+		echo "Couldn't delete images/ " . $_GET['delete'];
+		header( 'Location: photoapp.php?deletion=false' ) ;
+	}
 	
 ?>

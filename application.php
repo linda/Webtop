@@ -151,6 +151,7 @@
 			$( "#photoDialog" ).dialog( "open" );
 		}
 		$( "#infoDialog" ).parent().css({"left": infoDialogPosition.left + "px", "top": infoDialogPosition.top + "px"});
+		alert ($( "#infoDialog" ).parent().css("left"));
 		$( "#photoDialog" ).parent().css({"left": photoDialogPosition.left + "px", "top": photoDialogPosition.top + "px"});
 		$( "#boxbot" ).css({"left": boxbotPosition.left + "px", "top": boxbotPosition.top + "px"});
 		$( "#vase1" ).css({"left": vase1Position.left + "px", "top": vase1Position.top + "px"});

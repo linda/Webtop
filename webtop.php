@@ -37,7 +37,7 @@
 			$_SESSION['infoDialogOpen']=['open'=>false];
 		}
 		if(!isset($_SESSION['infoDialogPosition'])){
-			$_SESSION['infoDialogPosition']=['left'=>200, 'top'=>100];
+			$_SESSION['infoDialogPosition']=['left'=>0, 'top'=>0];
 		}
 		if(!isset($_SESSION['photoDialogOpen'])){
 			$_SESSION['photoDialogOpen']=['open'=>false];
@@ -109,13 +109,6 @@
 		}
 		?>
 	</div>
-	<?php
-	if(isset($_SESSION['username']) ){
-		include 'application.php';
-	}
-		fb($_SESSION, "SESSION-Array: ");
-	?>
-
 
 	<div id="menudiv">
 	<?php
@@ -129,18 +122,24 @@
 			include 'taskleiste.php';
 		}
 	?>
-	<div id="infoDialog" class="dialog">
+	<div id="infoDialog" class="dialog" title="About PHP">
 		<?php
 			if (isset($_SESSION['username'])){
 				include 'dialog.php';
 			}
 		?>
-	<div id="photoDialog" class="dialog">
+	<div id="photoDialog" class="dialog" title="Photographs">
 		<?php
 			if (isset($_SESSION['username'])){
 				include 'photoDialog.php';
 			}
 		?>
+	<?php
+		if(isset($_SESSION['username']) ){
+			include 'application.php';
+		}
+			fb($_SESSION, "SESSION-Array: ");
+	?>
 	</div>
 </body>
 </html>

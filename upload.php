@@ -25,11 +25,11 @@
 	{
 		echo "Upload to " . $path . " successful!";
 		// Can I use header('Location:') like that?
-		header( 'Location: photoapp.php?success=true' ) ;
+		header( 'Location: photoapp.php?upload=true' ) ;
 	}
 	else {
 		echo "No upload for you";
-		header( 'Location: photoapp.php?success=false' ) ;
+		header( 'Location: photoapp.php?upload=false' ) ;
 	}
 //	header( 'Location: photoapp.php' ) ;
 

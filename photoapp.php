@@ -55,12 +55,19 @@
 </head>
 <body>
 <?php
-	if(isset($_GET['success']))
+	if(isset($_GET['upload']))
 	{
-		if($_GET['success'] == "true")
+		if($_GET['upload'] == "true")
 			echo "<p id='top'>Upload worked!</p>";
 		else
 			echo "<p id='top'>Upload didn't work.</p>";
+	}
+	if(isset($_GET['deletion']))
+	{
+		if($_GET['deletion'] == "true")
+			echo "<p id='top'>Image deleted!</p>";
+		else
+			echo "<p id='top'>No deletion.</p>";
 	}
 ?>
 	<div ID="tumbnails">
