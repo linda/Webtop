@@ -75,6 +75,7 @@
 			//  1) The dialog window is opened
 			//  2) Ajax request is sent to save the new state in savestate.php
 			//		where is will be saved in session vars
+			//		TODO: use "this" or similar insted if the div ID infoDialog?
 			// ============================
 
 			$( "#vase1" ).dblclick(function() {
@@ -82,7 +83,13 @@
 				$.ajax({
 					type: "POST",
 					url: "savestate.php",
-					data: { infoDialogOpen: true},
+					data: {
+							infoDialogOpen: true,
+							infoDialogPosition: {
+								left: $( "#infoDialog" ).parent().position().left, 
+								top: $( "#infoDialog" ).parent().position().top
+							}
+						},
 					dataType: "text"
 					})
 			});
@@ -130,7 +137,13 @@
 				$.ajax({
 					type: "POST",
 					url: "savestate.php",
-					data: { photoDialogOpen: true},
+					data:{
+							photoDialogOpen: true,
+							photoDialogPosition: {
+								left: $( "#photoDialog" ).parent().position().left, 
+								top: $( "#photoDialog" ).parent().position().top
+							}
+						},
 					dataType: "text"
 					})
 			});
@@ -151,7 +164,6 @@
 			$( "#photoDialog" ).dialog( "open" );
 		}
 		$( "#infoDialog" ).parent().css({"left": infoDialogPosition.left + "px", "top": infoDialogPosition.top + "px"});
-		alert ($( "#infoDialog" ).parent().css("left"));
 		$( "#photoDialog" ).parent().css({"left": photoDialogPosition.left + "px", "top": photoDialogPosition.top + "px"});
 		$( "#boxbot" ).css({"left": boxbotPosition.left + "px", "top": boxbotPosition.top + "px"});
 		$( "#vase1" ).css({"left": vase1Position.left + "px", "top": vase1Position.top + "px"});
