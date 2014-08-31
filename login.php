@@ -19,7 +19,8 @@
 			else
 			{
 				if(isset($db)){
-					$result = $db->query("Select * FROM user WHERE username ='$user'");
+					$sql = "Select * FROM user WHERE username ='$user'";
+					$result = $db->query($sql);
 					if($row = $result->fetch_object()){
 							if (md5($password) == $row->Password)
 								return TRUE;

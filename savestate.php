@@ -14,10 +14,44 @@
 <body>
 	<?php
 		session_start();
+		$db = mysqli_connect( 'localhost', 'root', '', 'webtop' );
+			if (mysqli_connect_errno() == 0){
+				echo "connection works<br>";
+			}
+			else {
+				echo 'no connection<br>';
+			}
 		fb($_POST, "Mein POST-Array");
+		fb($_SESSION, "Mein SESSION-Array");
+
 		// ============================
 		//	Passing values from POST to SESSION-Array
+		//	and saving them into database
+		//	Needs to be cleaned up.
 		// ============================
+		
+		$username = $_SESSION['username'];
+		
+		$sqlUser = "Select * FROM apps WHERE UserIn = '$username'";
+		$result = $db->query($sqlUser);
+		if($result && $result->num_rows){
+			$row = $result->fetch_object();
+			echo "<br>We already have this user.<br>";
+		}
+		else{
+			echo "<br>This is this user's first app OMG!<br>";
+			$sqlUserCreation = "Insert INTO apps (UserIn) values ('$username')";
+			$db->query($sqlUserCreation);
+			$result = $db->query($sqlUser);
+			if($result && $result->num_rows)
+				$row = $result->fetch_object();
+			else echo "Couldn't create user " . $username;
+		}
+		$result->free_result();
+		
+		echo "Current user: " . $row->UserIn;
+
+
 		if (isset($_POST['infoDialogOpen'])){
 				$_SESSION['infoDialogOpen'] = $_POST['infoDialogOpen'];
 		}

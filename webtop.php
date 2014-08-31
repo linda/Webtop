@@ -39,13 +39,13 @@
 	// ============================
 	if (isset($_SESSION['username'])){
 		if(!isset($_SESSION['infoDialogOpen'])){
-			$_SESSION['infoDialogOpen']=['open'=>false];
+			$_SESSION['infoDialogOpen']='false';
 		}
 		if(!isset($_SESSION['infoDialogPosition'])){
 			$_SESSION['infoDialogPosition']=['left'=>0, 'top'=>0];
 		}
 		if(!isset($_SESSION['photoDialogOpen'])){
-			$_SESSION['photoDialogOpen']=['open'=>false];
+			$_SESSION['photoDialogOpen']='false';
 		}
 		if(!isset($_SESSION['photoDialogPosition'])){
 			$_SESSION['photoDialogPosition']=['left'=>0, 'top'=>0];
@@ -62,7 +62,6 @@
 		if(!isset($_SESSION['vase3'])){
 			$_SESSION['vase3']=['left'=>0, 'top'=>0];
 		}
-
 	}
 	
 	fb($_SESSION, "Mein SESSION-Array");
