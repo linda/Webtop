@@ -31,29 +31,27 @@
 		// ============================
 		
 		$username = $_SESSION['username'];
-		
-		$sqlUser = "Select * FROM apps WHERE UserIn = '$username'";
-		$result = $db->query($sqlUser);
+		$currentapp = 'infoDialog';
+
+		$sqlUserApp = "Select * FROM apps WHERE UserIn = '$username' && Applikationsname = '$currentapp'";
+		$result = $db->query($sqlUserApp);
 		if($result && $result->num_rows){
 			$row = $result->fetch_object();
-			echo "<br>We already have this user.<br>";
+			echo "<br>This user and app combination has been here before! Hi " . $username . "!<br>";
 		}
 		else{
-			echo "<br>This is this user's first app OMG!<br>";
-			$sqlUserCreation = "Insert INTO apps (UserIn) values ('$username')";
+			echo "<br>This user used this app for the first time! How exiting!<br>";
+			$sqlUserCreation = "Insert INTO apps (UserIn, Applikationsname) values ('$username', '$currentapp')";
 			$db->query($sqlUserCreation);
-			$result = $db->query($sqlUser);
+			$result = $db->query($sqlUserApp);
 			if($result && $result->num_rows)
 				$row = $result->fetch_object();
-			else echo "Couldn't create user " . $username;
+			else echo "Couldn't create this row ";
 		}
 		$result->free_result();
-		
-		echo "Current user: " . $row->UserIn;
 
-
-		if (isset($_POST['infoDialogOpen'])){
-				$_SESSION['infoDialogOpen'] = $_POST['infoDialogOpen'];
+		if(isset($_POST['infoDialogOpen'])){
+			$_SESSION['infoDialogOpen'] = $_POST['infoDialogOpen'];
 		}
 		if (isset($_POST['infoDialogPosition'])){
 				$_SESSION['infoDialogPosition'] = $_POST['infoDialogPosition'];
