@@ -31,27 +31,37 @@
 		// ============================
 		
 		$username = $_SESSION['username'];
-		$currentapp = 'infoDialog';
-
-		$sqlUserApp = "Select * FROM apps WHERE UserIn = '$username' && Applikationsname = '$currentapp'";
-		$result = $db->query($sqlUserApp);
-		if($result && $result->num_rows){
-			$row = $result->fetch_object();
-			echo "<br>This user and app combination has been here before! Hi " . $username . "!<br>";
-		}
-		else{
-			echo "<br>This user used this app for the first time! How exiting!<br>";
-			$sqlUserCreation = "Insert INTO apps (UserIn, Applikationsname) values ('$username', '$currentapp')";
-			$db->query($sqlUserCreation);
-			$result = $db->query($sqlUserApp);
-			if($result && $result->num_rows)
-				$row = $result->fetch_object();
-			else echo "Couldn't create this row ";
-		}
-		$result->free_result();
 
 		if(isset($_POST['infoDialogOpen'])){
 			$_SESSION['infoDialogOpen'] = $_POST['infoDialogOpen'];
+			$currentapp = 'infoDialog';
+			if($_POST['infoDialogOpen'] == 'true')
+				$isOpen = 1;
+			else $isOpen = 0;
+			// ============================
+			//	Check if this particular user/app combination is already saved in the database;
+			//	if yes update it, if no create it;
+			//	TODO try to condense this into one REPLACE statement? or other
+			// ============================			
+			$sqlUserApp = "Select * FROM apps WHERE UserIn = '$username' && Applikationsname = '$currentapp'";
+			$result = $db->query($sqlUserApp);
+			if($result && $result->num_rows){
+				$row = $result->fetch_object();
+//				echo "<br>This user and app combination has been here before! Hi " . $username . "!<br>";
+				$sqlNewStatus = 
+					"UPDATE apps SET Status='$isOpen' WHERE ID='$row->ID'";
+				$db->query($sqlNewStatus);				
+			}
+			else{
+//				echo "<br>This user used this app for the first time! How exiting!<br>";
+				$sqlUserCreation = "Insert INTO apps (UserIn, Applikationsname, Status) values ('$username', '$currentapp', '$isOpen')";
+				$db->query($sqlUserCreation);
+				$result = $db->query($sqlUserApp);
+				if($result && $result->num_rows)
+					$row = $result->fetch_object();
+//				else echo "Couldn't create this row ";
+			}
+			$result->free_result();
 		}
 		if (isset($_POST['infoDialogPosition'])){
 				$_SESSION['infoDialogPosition'] = $_POST['infoDialogPosition'];
