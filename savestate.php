@@ -20,19 +20,27 @@
 		$username = $_SESSION['username'];
 
 		// ============================
-		// Function for save information on the appsinto the database
+		//	Function for save App status (open/closed) into db
 		// ============================
-		function saveAppState ($username, $currentapp){
+		function saveAppState ($username, $currentapp, $value){
 			$db = mysqli_connect( 'localhost', 'root', '', 'webtop' );
 			if (mysqli_connect_errno() == 0){
 				echo "connection works<br>";
 			}
 			else {
 				echo 'no connection<br>';
-			}		
-			if($_POST[$currentapp] == 'true')
-				$isOpen = 1;
-			else $isOpen = 0;
+			}
+			if(count($value)==1){ // contains true or false and not position array of length 2
+				if($value == 'true')
+					$isOpen = 1;
+				else $isOpen = 0;
+				$saveWhat = 'Status';
+			}
+			else{
+				$posX = $value['left'];
+				$posY = $value['top'];
+				$saveWhat = 'Position';
+			}
 			// ============================
 			//	Check if this particular user/app combination is already saved in the database;
 			//	if yes update it, if no create it;
@@ -42,42 +50,57 @@
 			$result = $db->query($sqlUserApp);
 			if($result && $result->num_rows){
 				$row = $result->fetch_object();
-//				echo "<br>This user and app combination has been here before! Hi " . $username . "!<br>";
-				$sqlNewStatus = 
-					"UPDATE apps SET Status='$isOpen' WHERE ID='$row->ID'";
-				$db->query($sqlNewStatus);				
+				if($saveWhat == 'Status'){
+					$sqlNewValues = 
+						"UPDATE apps SET Status='$isOpen' WHERE ID='$row->ID'";
+				}
+				else{
+					$sqlNewValues = 
+						"UPDATE apps SET PositionX='$posX', PositionY='$posY' WHERE ID='$row->ID'";
+				}
+				$db->query($sqlNewValues);				
 			}
 			else{
-//				echo "<br>This user used this app for the first time! How exiting!<br>";
-				$sqlUserCreation = "Insert INTO apps (UserIn, Applikationsname, Status) values ('$username', '$currentapp', '$isOpen')";
+				if($saveWhat == 'Status'){
+					$sqlUserCreation = 
+						"Insert INTO apps (UserIn, Applikationsname, Status)
+						values ('$username', '$currentapp', '$isOpen')";
+				}
+				else{
+					$sqlUserCreation = 
+						"Insert INTO apps (UserIn, Applikationsname, PositionX, PositionY)
+						values ('$username', '$currentapp', '$posX', '$posY')";
+				}
 				$db->query($sqlUserCreation);
 				$result = $db->query($sqlUserApp);
 				if($result && $result->num_rows)
 					$row = $result->fetch_object();
-//				else echo "Couldn't create this row ";
 			}
 			$result->free_result();		
 		}
 		// ============================
 		//	Passing values from POST to SESSION-Array
 		//	and saving them into database
-		//	Needs to be cleaned up.
 		// ============================
 		if(isset($_POST['infoDialogOpen'])){
 			$_SESSION['infoDialogOpen'] = $_POST['infoDialogOpen'];
-			saveAppState ($username, 'infoDialog');
+			saveAppState ($username, 'infoDialog', $_POST['infoDialogOpen']);
 		}
 		if (isset($_POST['infoDialogPosition'])){
-				$_SESSION['infoDialogPosition'] = $_POST['infoDialogPosition'];
+			$_SESSION['infoDialogPosition'] = $_POST['infoDialogPosition'];
+			saveAppState ($username, 'infoDialog', $_POST['infoDialogPosition']);				
 		}
 		if (isset($_POST['photoDialogOpen'])){
-				$_SESSION['photoDialogOpen'] = $_POST['photoDialogOpen'];
+			$_SESSION['photoDialogOpen'] = $_POST['photoDialogOpen'];
+			saveAppState ($username, 'photoDialog', $_POST['photoDialogOpen']);
 		}
 		if (isset($_POST['photoDialogPosition'])){
-				$_SESSION['photoDialogPosition'] = $_POST['photoDialogPosition'];
+			$_SESSION['photoDialogPosition'] = $_POST['photoDialogPosition'];
+			saveAppState ($username, 'photoDialog', $_POST['photoDialogPosition']);
 		}
 		if (isset($_POST['boxbot'])){
-				$_SESSION['boxbot'] = $_POST['boxbot'];
+			$_SESSION['boxbot'] = $_POST['boxbot'];
+			saveAppState ($username, 'boxbot', $_POST['boxbot']);
 		}
 		if (isset($_POST['vase1'])){
 				$_SESSION['vase1'] = $_POST['vase1'];
