@@ -14,28 +14,23 @@
 <body>
 	<?php
 		session_start();
-		$db = mysqli_connect( 'localhost', 'root', '', 'webtop' );
+
+		fb($_POST, "Mein POST-Array");
+		fb($_SESSION, "Mein SESSION-Array");
+		$username = $_SESSION['username'];
+
+		// ============================
+		// Function for save information on the appsinto the database
+		// ============================
+		function saveAppState ($username, $currentapp){
+			$db = mysqli_connect( 'localhost', 'root', '', 'webtop' );
 			if (mysqli_connect_errno() == 0){
 				echo "connection works<br>";
 			}
 			else {
 				echo 'no connection<br>';
-			}
-		fb($_POST, "Mein POST-Array");
-		fb($_SESSION, "Mein SESSION-Array");
-
-		// ============================
-		//	Passing values from POST to SESSION-Array
-		//	and saving them into database
-		//	Needs to be cleaned up.
-		// ============================
-		
-		$username = $_SESSION['username'];
-
-		if(isset($_POST['infoDialogOpen'])){
-			$_SESSION['infoDialogOpen'] = $_POST['infoDialogOpen'];
-			$currentapp = 'infoDialog';
-			if($_POST['infoDialogOpen'] == 'true')
+			}		
+			if($_POST[$currentapp] == 'true')
 				$isOpen = 1;
 			else $isOpen = 0;
 			// ============================
@@ -61,7 +56,16 @@
 					$row = $result->fetch_object();
 //				else echo "Couldn't create this row ";
 			}
-			$result->free_result();
+			$result->free_result();		
+		}
+		// ============================
+		//	Passing values from POST to SESSION-Array
+		//	and saving them into database
+		//	Needs to be cleaned up.
+		// ============================
+		if(isset($_POST['infoDialogOpen'])){
+			$_SESSION['infoDialogOpen'] = $_POST['infoDialogOpen'];
+			saveAppState ($username, 'infoDialog');
 		}
 		if (isset($_POST['infoDialogPosition'])){
 				$_SESSION['infoDialogPosition'] = $_POST['infoDialogPosition'];
