@@ -9,13 +9,11 @@
 		}
 		$sqlUserApp = "Select * FROM apps WHERE UserIn = '$username' && Applikationsname = '$app'";
 		$result = $db->query($sqlUserApp);
+		$_SESSION[$app]=['open'=>0,'left'=>0, 'top'=>0];
 		if($result && $result->num_rows){
 			$row = $result->fetch_object();
-			$_SESSION['infoDialogOpen']= $row->Status;
-			$_SESSION['infoDialogPosition']=['left'=>$row->PositionX, 'top'=>$row->PositionY];
-		}
-		else
-			$_SESSION['infoDialogOpen']='false';		
+			$_SESSION[$app]=['open'=>$row->Status,'left'=>$row->PositionX, 'top'=>$row->PositionY];
+		}		
 	}
 
 	
@@ -42,30 +40,21 @@
 	//	state of the applications; all windows set to closed etc.
 	// ============================
 	if (isset($_SESSION['username'])){
-		restoreAppState($_SESSION['username'], 'infoDialog');
-		// if(!isset($_SESSION['infoDialogOpen'])){
-			// $_SESSION['infoDialogOpen']='false';
-		// }
-		// if(!isset($_SESSION['infoDialogPosition'])){
-			// $_SESSION['infoDialogPosition']=['left'=>0, 'top'=>0];
-		// }
-		if(!isset($_SESSION['photoDialogOpen'])){
-			$_SESSION['photoDialogOpen']='false';
-		}
-		if(!isset($_SESSION['photoDialogPosition'])){
-			$_SESSION['photoDialogPosition']=['left'=>0, 'top'=>0];
-		}
+		if(!isset($_SESSION['infoDialog']))
+			restoreAppState($_SESSION['username'], 'infoDialog');
+		if(!isset($_SESSION['photoDialog']))
+			restoreAppState($_SESSION['username'], 'photoDialog');
 		if(!isset($_SESSION['boxbot'])){
-			$_SESSION['boxbot']=['left'=>0, 'top'=>0];
+			restoreAppState($_SESSION['username'], 'boxbot');
 		}
 		if(!isset($_SESSION['vase1'])){
-			$_SESSION['vase1']=['left'=>0, 'top'=>0];
+			restoreAppState($_SESSION['username'], 'vase1');
 		}
 		if(!isset($_SESSION['vase2'])){
-			$_SESSION['vase2']=['left'=>0, 'top'=>0];
+			restoreAppState($_SESSION['username'], 'vase2');
 		}
 		if(!isset($_SESSION['vase3'])){
-			$_SESSION['vase3']=['left'=>0, 'top'=>0];
+			restoreAppState($_SESSION['username'], 'vase3');
 		}
 	}
 	
