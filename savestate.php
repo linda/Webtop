@@ -20,7 +20,7 @@
 		$username = $_SESSION['username'];
 
 		// ============================
-		//	Function for save App status (open/closed) into db
+		//	Function for saving app state (open/closed and position) into db
 		// ============================
 		function saveAppState ($username, $currentapp, $value){
 			$db = mysqli_connect( 'localhost', 'root', '', 'webtop' );
@@ -30,9 +30,13 @@
 			else {
 				echo 'no connection<br>';
 			}
-			if(count($value)==1){ // contains true or false and not position array of length 2
+
+			// ============================
+			//	Check if value is a position array or single true/false value
+			// ============================			
+			if(count($value)==1){
 				if($value == 'true')
-					$isOpen = 1;
+					$isOpen = 1; //TODO: automatise this, save 0/1 instead of true/false string
 				else $isOpen = 0;
 				$saveWhat = 'Status';
 			}
@@ -44,10 +48,16 @@
 			// ============================
 			//	Check if this particular user/app combination is already saved in the database;
 			//	if yes update it, if no create it;
-			//	TODO try to condense this into one REPLACE statement? or other
+			//	TODO try to condense this
+			//	(using REPLACE statement not possible because the values to check against
+			//	- Username and Applikationsname - are not primary key or/and unique)
 			// ============================			
 			$sqlUserApp = "Select * FROM apps WHERE UserIn = '$username' && Applikationsname = '$currentapp'";
 			$result = $db->query($sqlUserApp);
+			// ============================
+			//	If this particular user and app combination already exists,
+			//	update the row, otherwise create it.
+			// ============================
 			if($result && $result->num_rows){
 				$row = $result->fetch_object();
 				if($saveWhat == 'Status'){
@@ -60,6 +70,7 @@
 				}
 				$db->query($sqlNewValues);				
 			}
+			
 			else{
 				if($saveWhat == 'Status'){
 					$sqlUserCreation = 
@@ -103,13 +114,16 @@
 			saveAppState ($username, 'boxbot', $_POST['boxbot']);
 		}
 		if (isset($_POST['vase1'])){
-				$_SESSION['vase1'] = $_POST['vase1'];
+			$_SESSION['vase1'] = $_POST['vase1'];
+			saveAppState ($username, 'vase1', $_POST['vase1']);
 		}
 		if (isset($_POST['vase2'])){
-				$_SESSION['vase2'] = $_POST['vase2'];
+			$_SESSION['vase2'] = $_POST['vase2'];
+			saveAppState ($username, 'vase2', $_POST['vase2']);
 		}
 		if (isset($_POST['vase3'])){
-				$_SESSION['vase3'] = $_POST['vase3'];
+			$_SESSION['vase3'] = $_POST['vase3'];
+			saveAppState ($username, 'vase3', $_POST['vase3']);
 		}
 
 	?>
