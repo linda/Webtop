@@ -35,7 +35,7 @@
 			//	Check if value is a position array or single true/false value
 			// ============================			
 			if(count($value)==1){
-				if($value == 'true')
+				if($value == 1)
 					$isOpen = 1; //TODO: automatise this, save 0/1 instead of true/false string
 				else $isOpen = 0;
 				$saveWhat = 'Status';

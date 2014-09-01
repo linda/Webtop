@@ -1,18 +1,23 @@
 <?php
 	session_start();
-	// $db = mysqli_connect( 'localhost', 'root', '', 'webtop' );
-	// if (mysqli_connect_errno() == 0){
-		// echo "connection works";
-	// }
-	// else {
-		// echo 'no connection';
-	// }
-	// $result = $db->query("Select * from user");
-	// if($result){
-		// while($z= $result->fetch_object()){
-			// echo "<br>" .$z->Username;
-		// }
-	// }
+	
+	
+	function restoreAppState($username, $app){
+		$db = mysqli_connect( 'localhost', 'root', '', 'webtop' );
+		if (mysqli_connect_errno() != 0){
+			echo 'Connection to database failed';
+		}
+		$sqlUserApp = "Select * FROM apps WHERE UserIn = '$username' && Applikationsname = '$app'";
+		$result = $db->query($sqlUserApp);
+		if($result && $result->num_rows){
+			$row = $result->fetch_object();
+			$_SESSION['infoDialogOpen']= $row->Status;
+			$_SESSION['infoDialogPosition']=['left'=>$row->PositionX, 'top'=>$row->PositionY];
+		}
+		else
+			$_SESSION['infoDialogOpen']='false';		
+	}
+
 	
 	// ============================
 	// FirePHP core pages for easier debugging.
@@ -25,7 +30,6 @@
 	if (isset($_COOKIE['username'])) {
 		$_SESSION['username']=$_COOKIE['username'];
 	}
-
 	if(isset($_POST['stayloggedin'])){
 		setcookie('username', $_POST['username'], time()+60000);
 	}
@@ -38,12 +42,13 @@
 	//	state of the applications; all windows set to closed etc.
 	// ============================
 	if (isset($_SESSION['username'])){
-		if(!isset($_SESSION['infoDialogOpen'])){
-			$_SESSION['infoDialogOpen']='false';
-		}
-		if(!isset($_SESSION['infoDialogPosition'])){
-			$_SESSION['infoDialogPosition']=['left'=>0, 'top'=>0];
-		}
+		restoreAppState($_SESSION['username'], 'infoDialog');
+		// if(!isset($_SESSION['infoDialogOpen'])){
+			// $_SESSION['infoDialogOpen']='false';
+		// }
+		// if(!isset($_SESSION['infoDialogPosition'])){
+			// $_SESSION['infoDialogPosition']=['left'=>0, 'top'=>0];
+		// }
 		if(!isset($_SESSION['photoDialogOpen'])){
 			$_SESSION['photoDialogOpen']='false';
 		}

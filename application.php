@@ -1,5 +1,11 @@
 <script>
 	// ============================
+	//	File that contains javascript/jQuery functions;
+	//	To be included in the main page.
+	//	Javascript for the photoapp is not included.
+	// =======================
+
+	// ============================
 	//	Global variables.
 	// =======================
 	var infoDialogOpen;
@@ -57,7 +63,7 @@
 					$.ajax({
 						type: "POST",
 						url: "savestate.php",
-						data: { infoDialogOpen: false },
+						data: { infoDialogOpen: 0 },
 						dataType: "text"
 						})
 				},
@@ -84,7 +90,7 @@
 					type: "POST",
 					url: "savestate.php",
 					data: {
-							infoDialogOpen: true,
+							infoDialogOpen: 1,
 							infoDialogPosition: {
 								left: $( "#infoDialog" ).parent().position().left, 
 								top: $( "#infoDialog" ).parent().position().top
@@ -112,7 +118,7 @@
 					$.ajax({
 						type: "POST",
 						url: "savestate.php",
-						data: { photoDialogOpen: false },
+						data: { photoDialogOpen: 0 },
 						dataType: "text"
 						})
 				},
@@ -138,7 +144,7 @@
 					type: "POST",
 					url: "savestate.php",
 					data:{
-							photoDialogOpen: true,
+							photoDialogOpen: 1,
 							photoDialogPosition: {
 								left: $( "#photoDialog" ).parent().position().left, 
 								top: $( "#photoDialog" ).parent().position().top
@@ -157,10 +163,10 @@
 	//	(this means there might be a noticeable delay before everything returns to desired position)
 	// ============================
 	$( window ).load(function() {
-		if (infoDialogOpen === "true"){
+		if (infoDialogOpen === '1'){
 			$( "#infoDialog" ).dialog( "open" );
 		}
-		if (photoDialogOpen === "true"){
+		if (photoDialogOpen === '1'){
 			$( "#photoDialog" ).dialog( "open" );
 		}
 		$( "#infoDialog" ).parent().css({"left": infoDialogPosition.left + "px", "top": infoDialogPosition.top + "px"});
