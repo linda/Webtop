@@ -14,7 +14,6 @@
 					<td><input type="password" name="password"></td>
 				</tr>
 			</table>
-
 			<p><input type="submit" value="Registration">
 			<input type="reset" name="Reset"></p>
 		</fieldset>

@@ -75,8 +75,9 @@
 			echo '<a class="gallery" rel="gallery" href="images/' . $image . '" title="Campus Wien im Herbst.">
 			<img src="images/' . $image . '" alt="" />
 			</a>';
-			echo	'<a href="delete.php?delete=' . $image.'">Del</a>
-					<a href="edit.php?edit=' . $image.'">Ed</a>';
+			echo	'<a href="delete.php?delete=' . $image.'">D</a>
+					<a href="edit.php?edit=' . $image.'">E</a>
+					<a href="rename.php?rename=' . $image.'">RN</a>';
 		}
 	}
 	closedir($imagesDir);
