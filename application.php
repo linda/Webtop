@@ -56,7 +56,13 @@
 					$.ajax({
 						type: "POST",
 						url: "savestate.php",
-						data: { infoDialog: {open: 0} },
+						data:{ 
+								infoDialog:{
+									open: 0,
+									left: 0,
+									top: 0
+								} 
+							},
 						dataType: "text"
 						})
 				},
@@ -64,7 +70,7 @@
 					$.ajax({
 						type: "POST",
 						url: "savestate.php",
-						data: { infoDialog: {left: ui.position.left, top: ui.position.top}},
+						data: { infoDialog: {open: 1, left: ui.position.left, top: ui.position.top}},
 						dataType: "text"
 						})
 				}
@@ -110,7 +116,7 @@
 					$.ajax({
 						type: "POST",
 						url: "savestate.php",
-						data: { photoDialog: {open: 0} },
+						data: { photoDialog: {open: 0, left: 0, top: 0} },
 						dataType: "text"
 						})
 				},
@@ -118,7 +124,13 @@
 					$.ajax({
 						type: "POST",
 						url: "savestate.php",
-						data: { photoDialog: {left: ui.position.left, top: ui.position.top}},
+						data: {
+							photoDialog: {
+								open: 1,
+								left: ui.position.left, 
+								top: ui.position.top
+								}
+							},
 						dataType: "text"
 						})
 				}
@@ -159,6 +171,7 @@
 		if (photoDialog.open === '1'){
 			$( "#photoDialog" ).dialog( "open" );
 		}
+		alert (infoDialog.top);
 		$( "#infoDialog" ).parent().css({"left": infoDialog.left + "px", "top": infoDialog.top + "px"});
 		$( "#photoDialog" ).parent().css({"left": photoDialog.left + "px", "top": photoDialog.top + "px"});
 		$( "#boxbot" ).css({"left": boxbot.left + "px", "top": boxbot.top + "px"});
