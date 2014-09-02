@@ -14,9 +14,6 @@
 	var vase1;
 	var vase2;
 	var vase3;
-	// ============================
-	//	Function for generalising the Ajax request upon dragstop
-	// ============================
 
 	// ============================
 	//	Function that loads the current state from the session variables upon page load
@@ -76,11 +73,11 @@
 				}
 			});
 			// ============================
-			//	Functions when there is a double-click on one of the icons:
+			//	Functions called on double-click on one of the icons.
 			//  1) The dialog window is opened
 			//  2) Ajax request is sent to save the new state in savestate.php
-			//		where is will be saved in session vars
-			//		TODO: use "this" or similar insted if the div ID infoDialog?
+			//		where is will be saved in sessions/the database
+			//	TODO: if possible use "this" or similar function instead of
 			// ============================
 			$( "#vase1" ).dblclick(function() {
 				$( "#infoDialog" ).dialog( "open" );
@@ -90,6 +87,8 @@
 					data: {
 							infoDialog: {
 								open: 1,
+							//	TODO: if possible use "this" or similar function instead of
+							//	using the element's ID?
 								left: $( "#infoDialog" ).parent().position().left, 
 								top: $( "#infoDialog" ).parent().position().top
 							}
