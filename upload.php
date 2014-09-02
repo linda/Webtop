@@ -9,15 +9,15 @@
 	// Directory "images" not included on github repo.
 	// ============================	
 	$fileupload=$_FILES['picture'];
-	$imageMime = explode(".", $_FILES['picture']['name']);
-	$imageEnding = $imageMime[1];		
-	$path = "images/" . uniqid() . "." . $imageEnding;
+	$imageSeparated = explode(".", $_FILES['picture']['name']);
+	$imageExtension = $imageSeparated[1];		
+	$path = "images/" . uniqid() . "." . $imageExtension;
 	
 	if( !$fileupload['error'] && $fileupload['size']>0
 		&& $fileupload['tmp_name']
 		&& is_uploaded_file($fileupload['tmp_name'] )
 		&& ( ($fileupload['type'] == 'image/jpeg') || ($fileupload['type'] == 'image/gif') || ($fileupload['type'] == 'image/png'))
-		&& ((strtolower($imageEnding) == 'jpg') || (strtolower($imageEnding) == 'jpeg') || (strtolower($imageEnding) == 'gif') || (strtolower($imageEnding) == 'png'))
+		&& ((strtolower($imageExtension) == 'jpg') || (strtolower($imageExtension) == 'jpeg') || (strtolower($imageExtension) == 'gif') || (strtolower($imageExtension) == 'png'))
 		&& move_uploaded_file($fileupload['tmp_name'], $path)
 	)
 	{
