@@ -22,7 +22,6 @@
 	<script type="text/javascript" src="../fancybox/source/helpers/jquery.fancybox-buttons.js"></script>
 	<link rel="stylesheet" href="../fancybox/source/helpers/jquery.fancybox-thumbs.css" type="text/css" media="screen" />
 	<script type="text/javascript" src="../fancybox/source/helpers/jquery.fancybox-thumbs.js"></script>
-
 	<script type="text/javascript" src="../fancybox/source/helpers/jquery.fancybox-media.js"></script>
 
 	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
@@ -76,12 +75,8 @@
 			echo '<a class="gallery" rel="gallery" href="images/' . $image . '" title="Campus Wien im Herbst.">
 			<img src="images/' . $image . '" alt="" />
 			</a>';
-			echo	'<ul>
-						<li><a href="delete.php?delete=' . $image.'">Delete</a></li>
-						<li><a href="edit.php?edit=' . $image.'">Edit</a><li>
-						<li>Rename</li>
-						<li>Download</li>
-					<ul>';
+			echo	'<a href="delete.php?delete=' . $image.'">Del</a>
+					<a href="edit.php?edit=' . $image.'">Ed</a>';
 		}
 	}
 	closedir($imagesDir);

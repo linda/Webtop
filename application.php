@@ -171,7 +171,6 @@
 		if (photoDialog.open === '1'){
 			$( "#photoDialog" ).dialog( "open" );
 		}
-		alert (infoDialog.top);
 		$( "#infoDialog" ).parent().css({"left": infoDialog.left + "px", "top": infoDialog.top + "px"});
 		$( "#photoDialog" ).parent().css({"left": photoDialog.left + "px", "top": photoDialog.top + "px"});
 		$( "#boxbot" ).css({"left": boxbot.left + "px", "top": boxbot.top + "px"});

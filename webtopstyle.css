@@ -3,9 +3,7 @@ padding:0;
 margin:0;
 }
 
-
 .ui-menu { width: 150px; }
-
 
 body{
 	background-image: url(matterhorn_1024x768.jpg);
@@ -19,7 +17,6 @@ body{
 a {
 	color: white;
 }
-
 
 p#top{
 	padding: 10px;
@@ -50,6 +47,13 @@ div#login{
 	margin-top: 50px;
 	margin-right: 100px;
 	float: right;
+}
+
+div#register{
+	position:absolute;
+	width:300px;
+	margin-top: 50px;
+	margin-left: 100px;
 }
 
 fieldset{
@@ -93,7 +97,7 @@ div#tumbnails img {
 	width: 120px;
 }
 
-div#tumbnails ul{
+div#tumbnails ul li{
 	font-size: 0.5em;
 }
 

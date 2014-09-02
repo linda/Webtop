@@ -77,6 +77,20 @@
 
 </head>
 <body>
+	<!--
+		Registration form included on webtop page.
+		TODO: switch this to something more professional
+		(get method means the form reappears after login
+		if user uses the backbotton of the browser)
+	-->
+	<div id="register">
+	<?php
+		if(isset($_GET['register']))
+		{
+			include 'registration.php';
+		}
+	?>
+	</div>
 	<div id="login">
 		<?php
 			if($_SESSION==NULL){

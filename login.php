@@ -54,6 +54,7 @@
 				<input type="reset" name="Zuruecksetzen"></p>
 			</fieldset>
 		</form>
+		<a href="webtop.php?register">Registrieren</a>
 	<?php
 		if ($_POST!=NULL){
 			$who = $_POST['username'];
