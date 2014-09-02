@@ -1,7 +1,6 @@
 <?php
 	session_start();
 	
-	
 	function restoreAppState($username, $app){
 		$db = mysqli_connect( 'localhost', 'root', '', 'webtop' );
 		if (mysqli_connect_errno() != 0){
@@ -9,13 +8,15 @@
 		}
 		$sqlUserApp = "Select * FROM apps WHERE UserIn = '$username' && Applikationsname = '$app'";
 		$result = $db->query($sqlUserApp);
+		// ============================
+		// Fill array with zeros to avoid empty values; then overwrite.
+		// ============================	
 		$_SESSION[$app]=['open'=>0,'left'=>0, 'top'=>0];
 		if($result && $result->num_rows){
 			$row = $result->fetch_object();
 			$_SESSION[$app]=['open'=>$row->Status,'left'=>$row->PositionX, 'top'=>$row->PositionY];
 		}		
 	}
-
 	
 	// ============================
 	// FirePHP core pages for easier debugging.
@@ -60,7 +61,6 @@
 	
 	fb($_SESSION, "Mein SESSION-Array");
 	fb($_POST, "Mein POST-Array");
-
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 "http://www.w3.org/TR/html4/loose.dtd">
@@ -74,7 +74,6 @@
 	<script src="../js/jquery-1.10.2.js"></script>
 	<script src="../js/jquery-ui-1.10.4.custom.js"></script>
 <!--	<script src="application.js"></script> -->
-
 
 </head>
 <body>

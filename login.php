@@ -55,7 +55,6 @@
 			</fieldset>
 		</form>
 	<?php
-
 		if ($_POST!=NULL){
 			$who = $_POST['username'];
 			$how = $_POST['password'];
@@ -63,7 +62,7 @@
 			if ( authenticateuser($who, $how) == TRUE) {
 				$_SESSION['username'] = $who;
 				header( 'Location: webtop.php' ) ;
-
+				
 				} else $wronglogin = 'Wrong username and password combination. ';
 		}
 ?>

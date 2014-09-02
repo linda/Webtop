@@ -9,10 +9,8 @@
 	// Directory "images" not included on github repo.
 	// ============================	
 	$fileupload=$_FILES['picture'];
-	
 	$imageMime = explode(".", $_FILES['picture']['name']);
-	$imageEnding = $imageMime[1];
-		
+	$imageEnding = $imageMime[1];		
 	$path = "images/" . uniqid() . "." . $imageEnding;
 	
 	if( !$fileupload['error'] && $fileupload['size']>0
@@ -31,6 +29,4 @@
 		echo "No upload for you";
 		header( 'Location: photoapp.php?upload=false' ) ;
 	}
-//	header( 'Location: photoapp.php' ) ;
-
 ?>

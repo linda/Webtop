@@ -14,12 +14,10 @@
 	var vase1;
 	var vase2;
 	var vase3;
-
 	// ============================
 	//	Function for generalising the Ajax request upon dragstop
 	// ============================
 
-	
 	// ============================
 	//	Function that loads the current state from the session variables upon page load
 	// =======================	
@@ -44,7 +42,6 @@
 	//	Function for everything to do with the dialog containing info.php into (in dialog.php).
 	// ============================
 	$(function() {
-	
 		// ============================
 		//	Settings for the dialog window with php info
 		// =======================
@@ -79,7 +76,6 @@
 			//		where is will be saved in session vars
 			//		TODO: use "this" or similar insted if the div ID infoDialog?
 			// ============================
-
 			$( "#vase1" ).dblclick(function() {
 				$( "#infoDialog" ).dialog( "open" );
 				$.ajax({
@@ -133,7 +129,6 @@
 			//  2) Ajax request is sent to save the new state in savestate.php
 			//		where is will be saved in session vars
 			// ============================
-
 			$( "#vase2" ).dblclick(function() {
 				$( "#photoDialog" ).dialog( "open" );
 				$.ajax({
@@ -150,7 +145,6 @@
 					})
 			});
 	});	
-	
 	
 	// ============================
 	//	Functions for restoring state of windows, icons position from sessions variables
@@ -172,7 +166,6 @@
 		$( "#vase2" ).css({"left": vase2.left + "px", "top": vase2.top + "px"});
 		$( "#vase3" ).css({"left": vase3.left + "px", "top": vase3.top + "px"});
 	});
-
 
 	// ============================
 	//	Functions for the dialog window with user info (in userdaten.php)
@@ -230,8 +223,7 @@
 				})
 		} );
 	});
-	
-	
+		
 	// ============================
 	// 	Functions for the startmenu. Is called by onClick on the "Start" paragraph.
 	// =======================
@@ -245,5 +237,4 @@
 		}
 		else $( '#menudiv' ).hide();
 	}
-
 </script>

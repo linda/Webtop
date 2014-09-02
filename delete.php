@@ -5,12 +5,10 @@
 	ob_start();	
 	fb($_GET, "Get-Array: ");
 
-
 	// ============================
 	// Delete image (image sent with GET method)
 	// TODO: redirect to photoapp page
 	// ============================	
-
 	if(unlink("images/" . $_GET['delete'])){
 		echo "Deleted images/" . $_GET['delete'];
 		header( 'Location: photoapp.php?deletion=true' ) ;
@@ -20,5 +18,4 @@
 		echo "Couldn't delete images/ " . $_GET['delete'];
 		header( 'Location: photoapp.php?deletion=false' ) ;
 	}
-	
 ?>

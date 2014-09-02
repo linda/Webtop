@@ -4,12 +4,9 @@
 	require_once('FirePHPCore/fb.php');
 	ob_start();	
 	fb($_FILES, "FILES-Array: ");
-
 ?>
-
 <html>
 <head>
-
 	<!-- jQuery library -->
 	<script type="text/javascript" src="../fancybox/jquery-1.11.1.min.js"></script>
 
@@ -31,7 +28,7 @@
 	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
 	<title>Linda's Webtop - Photo App</title>
 	<link rel="stylesheet" type="text/css" href="webtopstyle.css">
-	
+
 	<script>	
 		// ============================
 		// 	Include fancyBox.

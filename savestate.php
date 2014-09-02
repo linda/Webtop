@@ -70,18 +70,10 @@
 			$_SESSION['infoDialog'] = $_POST['infoDialog'];
 			saveAppState ($username, 'infoDialog', $_POST['infoDialog']);
 		}
-		// if (isset($_POST['infoDialogPosition'])){
-			// $_SESSION['infoDialogPosition'] = $_POST['infoDialogPosition'];
-			// saveAppState ($username, 'infoDialog', $_POST['infoDialogPosition']);				
-		// }
 		if (isset($_POST['photoDialog'])){
 			$_SESSION['photoDialog'] = $_POST['photoDialog'];
 			saveAppState ($username, 'photoDialog', $_POST['photoDialog']);
 		}
-		// if (isset($_POST['photoDialogPosition'])){
-			// $_SESSION['photoDialogPosition'] = $_POST['photoDialogPosition'];
-			// saveAppState ($username, 'photoDialog', $_POST['photoDialogPosition']);
-		// }
 		if (isset($_POST['boxbot'])){
 			$_SESSION['boxbot'] = $_POST['boxbot'];
 			saveAppState ($username, 'boxbot', $_POST['boxbot']);
@@ -98,8 +90,6 @@
 			$_SESSION['vase3'] = $_POST['vase3'];
 			saveAppState ($username, 'vase3', $_POST['vase3']);
 		}
-
 	?>
-	
 </body>
 </html>
