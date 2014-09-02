@@ -10,14 +10,16 @@
 	// Edit the image sent by GET
 	// ============================	
 	$imagetoedit = $_GET['edit'];
-	$imagetoeditwithpath = 'images/' . $imagetoedit;
+	if(isset($_POST['grey']))
+		$effect = $_POST['grey'];
+	else $effect='default';
 	
-	echo "Page for editing this image: " . $imagetoeditwithpath . "<br>";
-	echo "<img src='imagetoedit.php?edit=$imagetoedit'>";
+	echo "Page for editing this image: " . $imagetoedit . "<br>";
+	echo "<img src='imagetoedit.php?edit=$imagetoedit&effect=$effect'>";
 ?>
 <html>
 <body>
-	<form method="post" action="edit.php<?php echo'?edit='.$imagetoedit ?>" name="grey">
+	<form id="greyscale" method="post" action="edit.php<?php echo '?edit='.$imagetoedit?>" name="grey">
 		<input type="submit" name="grey" value="grey">
 	</form>
 </body>

@@ -13,8 +13,8 @@
 	$imagename = "images/" . $_GET['edit'];
 	
 	$im = @imagecreatefromjpeg($imagename);
-	imagefilter($im, IMG_FILTER_GRAYSCALE);
-	
+		if($_GET['effect']=='grey')
+			imagefilter($im, IMG_FILTER_GRAYSCALE);
 	if(!$im)
 	{
 		$im = ImageCreate (200, 200);
