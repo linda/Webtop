@@ -35,13 +35,55 @@
 		$(document).ready(function() {
 			$(".gallery").fancybox();
 		});
+
+		// ============================
+		// 	Drag & Drop javascript/jQuery code from examples in lecture.
+		// =======================
+		// function init() {
+		  // var dropbox = document.getElementById('dropbox');        
+		  // dropbox.addEventListener('dragenter', noopHandler, false);
+		  // dropbox.addEventListener('dragexit', noopHandler, false);
+		  // dropbox.addEventListener('dragover', noopHandler, false);
+		  // dropbox.addEventListener('drop', drop, false);
+		// }
+
+		// function noopHandler(evt) {
+		// evt.stopPropagation();
+		// evt.preventDefault();   
+		// }   
+
+		// function drop(evt) {
+		// evt.stopPropagation();
+		// evt.preventDefault();
+		// var files = evt.dataTransfer.files;
+		// var count = files.length; 
+		// for (i=0; i<count;i++) {   
+			// var formData = new FormData();
+			// formData.append("file", files[i]);
+
+			// $.ajax({
+				// type: "POST",
+				// data: formData,
+				// url: "upload.php",
+				// cache: false,
+				// contentType: false,
+				// processData: false,
+				// success: transferComplete
+			// });
+		// }
+		// }         
+
+		// function transferComplete(response, error) {
+		// console.log(response);
+		// var result = document.getElementById('result'); 
+		// result.innerHTML = response;	
+		// }
 		// ============================
 		// 	droppable function
 		// =======================
 		$(function() {
-			$( "#droppable" ).droppable({
+			$( "#dropbox" ).droppable({
 				drop: function( event, ui ) {
-					alert("dropped!");
 				}
 			});
 		});
@@ -89,7 +131,7 @@
 			<input type="submit" value="Upload File">
 		</form>
 	</div> 
-	<div id="dragFilesHere" class="ui-widget-header">
+	<div id="dropbox" class="ui-widget-header">
 	
 	</div>
 </body>

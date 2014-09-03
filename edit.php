@@ -10,8 +10,8 @@
 	// Edit the image sent by GET
 	// ============================	
 	$imagetoedit = $_GET['edit'];
-	if(isset($_POST['grey']))
-		$effect = $_POST['grey'];
+	if(isset($_POST['effect']))
+		$effect = $_POST['effect'];
 	else $effect='default';
 	
 	echo "Page for editing this image: " . $imagetoedit . "<br>";
@@ -20,7 +20,14 @@
 <html>
 <body>
 	<form id="greyscale" method="post" action="edit.php<?php echo '?edit='.$imagetoedit?>" name="grey">
-		<input type="submit" name="grey" value="grey">
+		<input type="submit" name="effect" value="grey">
 	</form>
+	<form id="brightness" method="post" action="edit.php<?php echo '?edit='.$imagetoedit?>" name="brighter">
+		<input type="submit" name="effect" value="brighter">
+	</form>
+	<form id="default" method="post" action="edit.php<?php echo '?edit='.$imagetoedit?>">
+		<input type="submit" name="effect" value="No filters">
+	</form>
+	<a href="photoapp.php">Back to overview</a>
 </body>
 </html>

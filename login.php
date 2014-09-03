@@ -1,23 +1,26 @@
 <?php
 		function authenticateuser($user, $password){
-			$db = mysqli_connect( 'localhost', 'root', '', 'webtop' );
-			if (mysqli_connect_errno() == 0){
-				echo "connection works";
-			}
-			else {
-				echo 'no connection';
-			}
 			// ============================
 			// If possible later replace this simple authentication with one using LDAP
 			// ============================	
 			if( ($user == "Marie") && ($password == "aramis") ){
 				return TRUE;
 			}
+			// ldap_connect();
+			// ldap_bind();
+			// ldap_close();
 			// ============================
 			// Second step, look up in db
 			// ============================	
 			else
 			{
+				$db = mysqli_connect( 'localhost', 'root', '', 'webtop' );
+				if (mysqli_connect_errno() == 0){
+					echo "connection works";
+				}
+				else {
+					echo 'no connection';
+				}
 				if(isset($db)){
 					$sql = "Select * FROM user WHERE username ='$user'";
 					$result = $db->query($sql);
@@ -46,7 +49,7 @@
 						<td><input type="password" name="password"></td>
 					</tr>
 					<tr>
-						<td colspan="2"><input type="checkbox" name="stayloggedin" value="ja"> Eingeloged bleiben?</td>
+						<td colspan="2"><input type="checkbox" name="stayloggedin" value="ja"> Stay logged in</td>
 					</tr>
 				</table>
 

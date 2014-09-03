@@ -106,7 +106,7 @@ div#uploadForm{
 	margin-bottom: 20px;
 }
 
-div#dragFilesHere{
+div#dropbox{
 	height: 140px;
 	width: 140px;
 	background-color: white;
