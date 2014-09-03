@@ -25,8 +25,8 @@
 	<form id="brightness" method="post" action="edit.php<?php echo '?edit='.$imagetoedit?>" name="brighter">
 		<input type="submit" name="effect" value="brighter">
 	</form>
-	<form id="default" method="post" action="edit.php<?php echo '?edit='.$imagetoedit?>">
-		<input type="submit" name="effect" value="No filters">
+	<form id="default" method="post" action="edit.php<?php echo '?edit='.$imagetoedit?>" name="back">
+		<input type="submit" name="effect" value="back">
 	</form>
 	<a href="photoapp.php">Back to overview</a>
 </body>

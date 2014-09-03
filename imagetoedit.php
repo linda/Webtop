@@ -4,26 +4,38 @@
 	require_once('FirePHPCore/fb.php');
 	ob_start();	
 	fb($_GET, "Get-Array: ");
+	fb($_POST, "POST-Array: ");
 
 	// ============================
 	// Load a JPEG image.
 	// ============================
 	$imagename = "images/" . $_GET['edit'];
+	$temp_image = "temp_images/backone.jpeg";
 
 	// ============================
-	// Effects; overwrite old image immediately;
-	// TODO: allow for atleast one step back before overwriting
-	// ============================		
-	$im = @imagecreatefromjpeg($imagename);
-		if($_GET['effect']=='grey'){
-			imagefilter($im, IMG_FILTER_GRAYSCALE);
-			imagejpeg($im, $imagename);
+	//	Effects; overwrite old image immediately.
+	//	Before overwriting, save old image in different folder
+	//	to allow for one step back.
+	// ============================
+	if($_GET['effect'] == 'back')
+		$im = @imagecreatefromjpeg($temp_image);
+	else
+		$im = @imagecreatefromjpeg($imagename);
+
+	if($im){
+		switch ($_GET['effect']){
+			case 'grey':
+				imagejpeg($im, 'temp_images/backone.jpeg');
+				imagefilter($im, IMG_FILTER_GRAYSCALE);
+				break;
+			case 'brighter':
+				imagejpeg($im, 'temp_images/backone.jpeg');
+				imagefilter($im, IMG_FILTER_BRIGHTNESS, 50);
+				break;
 		}
-		else if ($_GET['effect']=='brighter'){
-			imagefilter($im, IMG_FILTER_BRIGHTNESS, 50);
-			imagejpeg($im, $imagename);
-		}
-	if(!$im)
+		imagejpeg($im, $imagename);
+	}
+	else
 	{
 		$im = ImageCreate (200, 200);
 	}
