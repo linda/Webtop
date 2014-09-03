@@ -119,7 +119,8 @@
 			</a>';
 			echo	'<a href="delete.php?delete=' . $image.'">D</a>
 					<a href="edit.php?edit=' . $image.'">E</a>
-					<a href="rename.php?rename=' . $image.'">R</a>';
+					<a href="rename.php?rename=' . $image.'">RN</a>
+					<a href="download.php?download=' . $image.'">DL</a>';
 		}
 	}
 	closedir($imagesDir);

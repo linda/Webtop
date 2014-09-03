@@ -10,23 +10,27 @@
 	// Edit the image sent by GET
 	// ============================	
 	$imagetoedit = $_GET['edit'];
-	if(isset($_POST['effect']))
+	$effect='';
+	$number = '';
+	if(isset($_POST['effect'])){
 		$effect = $_POST['effect'];
-	else $effect='default';
-	
+		if(isset($_POST['number']))
+			$number = $_POST['number'];
+	}
 	echo "Page for editing this image: " . $imagetoedit . "<br>";
-	echo "<img src='imagetoedit.php?edit=$imagetoedit&effect=$effect'>";
+	echo "<img src='imagetoedit.php?edit=$imagetoedit&effect=$effect&number=$number'>";
 ?>
 <html>
 <body>
-	<form id="greyscale" method="post" action="edit.php<?php echo '?edit='.$imagetoedit?>" name="grey">
+	<form id="greyscale" method="post" action="edit.php<?php echo '?edit='.$imagetoedit?>">
 		<input type="submit" name="effect" value="grey">
 	</form>
-	<form id="brightness" method="post" action="edit.php<?php echo '?edit='.$imagetoedit?>" name="brighter">
+	<form id="brightness" method="post" action="edit.php<?php echo '?edit='.$imagetoedit?>">
+		<input type="text" name="number" size="3">
 		<input type="submit" name="effect" value="brighter">
 	</form>
-	<form id="default" method="post" action="edit.php<?php echo '?edit='.$imagetoedit?>" name="back">
-		<input type="submit" name="effect" value="back">
+	<form id="default" method="post" action="edit.php<?php echo '?edit='.$imagetoedit?>">
+		<input type="submit" name="effect" value="undo">
 	</form>
 	<a href="photoapp.php">Back to overview</a>
 </body>

@@ -17,7 +17,7 @@
 	//	Before overwriting, save old image in different folder
 	//	to allow for one step back.
 	// ============================
-	if($_GET['effect'] == 'back')
+	if($_GET['effect'] == 'undo')
 		$im = @imagecreatefromjpeg($temp_image);
 	else
 		$im = @imagecreatefromjpeg($imagename);
@@ -30,7 +30,7 @@
 				break;
 			case 'brighter':
 				imagejpeg($im, 'temp_images/backone.jpeg');
-				imagefilter($im, IMG_FILTER_BRIGHTNESS, 50);
+				imagefilter($im, IMG_FILTER_BRIGHTNESS, $_GET['number']);
 				break;
 		}
 		imagejpeg($im, $imagename);
