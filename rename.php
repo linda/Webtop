@@ -16,9 +16,12 @@
 		
 	if(isset($_POST['newname'])){
 		$newName = $_POST['newname'];
-		if (rename('images/'.$imagetorename, 'images/'.$newName))
-			echo "Image successfully renamed to " . $newName;
-		else echo "Could not rename";
+		if(file_exists ('images/'.$imagetorename)){
+			if (rename('images/'.$imagetorename, 'images/'.$newName))
+				echo "Image successfully renamed to " . $newName;
+			else echo "Renaming of " .$imagetorename. "failed.";
+		}
+		else echo "Could not find file images/".$imagetorename;
 	}
 ?>
 <html>

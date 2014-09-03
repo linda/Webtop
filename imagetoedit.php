@@ -7,7 +7,7 @@
 	fb($_POST, "POST-Array: ");
 
 	// ============================
-	// Load a JPEG image.
+	// Load a JPEG image. (TODO: same for pgn and gif images.)
 	// ============================
 	$imagename = "images/" . $_GET['edit'];
 	$temp_image = "temp_images/backone.jpeg";
