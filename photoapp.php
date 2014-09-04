@@ -38,7 +38,7 @@
 		});
 		
 		// ============================
-		// 	Drag & Drop javascript/jQuery code from example in lecture.
+		// 	Drag & Drop javascript/jQuery, using code from example in lecture.
 		// =======================
 		function init() {
 		  var dropbox = document.getElementById('dropbox');        

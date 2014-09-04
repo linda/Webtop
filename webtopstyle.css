@@ -95,6 +95,7 @@ div#tumbnails img {
 	padding: 10px 10px 10px 10px;
 	height: 120px;
 	width: 120px;
+	display: float;
 }
 
 div#tumbnails ul li{

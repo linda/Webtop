@@ -35,6 +35,21 @@
 					<td>Password:</td>
 					<td><input type="password" name="newuserpassword"></td>
 				</tr>
+<!--
+			Add all the other fields. This is boring.
+				<tr>
+					<td>First Name:</td>
+					<td><input type="text" name="vorname"></td>
+				<tr>
+				<tr>
+					<td>First Name:</td>
+					<td><input type="text" name="vorname"></td>
+				<tr>
+				<tr>
+					<td>Last Name:</td>
+					<td><input type="text" name="nachname"></td>
+				<tr>
+-->
 			</table>
 			<p><input type="submit" value="Register">
 			<input type="reset" name="Reset"></p>
