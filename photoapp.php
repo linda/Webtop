@@ -4,6 +4,7 @@
 	require_once('FirePHPCore/fb.php');
 	ob_start();	
 	fb($_FILES, "FILES-Array: ");
+	fb($_POST, "POST-Array: ");
 ?>
 <html>
 <head>
@@ -35,63 +36,64 @@
 		$(document).ready(function() {
 			$(".gallery").fancybox();
 		});
-
+		
 		// ============================
-		// 	Drag & Drop javascript/jQuery code from examples in lecture.
+		// 	Drag & Drop javascript/jQuery code from example in lecture.
 		// =======================
-		// function init() {
-		  // var dropbox = document.getElementById('dropbox');        
-		  // dropbox.addEventListener('dragenter', noopHandler, false);
-		  // dropbox.addEventListener('dragexit', noopHandler, false);
-		  // dropbox.addEventListener('dragover', noopHandler, false);
-		  // dropbox.addEventListener('drop', drop, false);
-		// }
+		function init() {
+		  var dropbox = document.getElementById('dropbox');        
+		  dropbox.addEventListener('dragenter', noopHandler, false);
+		  dropbox.addEventListener('dragexit', noopHandler, false);
+		  dropbox.addEventListener('dragover', noopHandler, false);
+		  dropbox.addEventListener('drop', drop, false);
+		}
 
-		// function noopHandler(evt) {
-		// evt.stopPropagation();
-		// evt.preventDefault();   
-		// }   
+		function noopHandler(evt) {
+		evt.stopPropagation();
+		evt.preventDefault();   
+		}   
 
-		// function drop(evt) {
-		// evt.stopPropagation();
-		// evt.preventDefault();
-		// var files = evt.dataTransfer.files;
-		// var count = files.length; 
-		// for (i=0; i<count;i++) {   
-			// var formData = new FormData();
-			// formData.append("file", files[i]);
+		function drop(evt) {
+		evt.stopPropagation();
+		evt.preventDefault();
+		var files = evt.dataTransfer.files;
+		var count = files.length; 
+		for (i=0; i<count;i++) {   
+			var formData = new FormData();
+			formData.append("picture", files[i]);
 
-			// $.ajax({
-				// type: "POST",
-				// data: formData,
-				// url: "upload.php",
-				// cache: false,
-				// contentType: false,
-				// processData: false,
-				// success: transferComplete
-			// });
-		// }
-		// }         
+			$.ajax({
+				type: "POST",
+				data: formData,
+				url: "upload.php",
+				cache: false,
+				contentType: false,
+				processData: false,
+				success: transferComplete
+			});
+		}
+		}
+		
+	function transferComplete(response, error) {
+		console.log(response);
+		var result = document.getElementById('main'); 
+		result.innerHTML = response;	
+	}
 
-		// function transferComplete(response, error) {
-		// console.log(response);
-		// var result = document.getElementById('result'); 
-		// result.innerHTML = response;	
-		// }
 		// ============================
 		// 	droppable function
 		// =======================
-		$(function() {
-			$( "#dropbox" ).droppable({
-				drop: function( event, ui ) {
-				}
-			});
-		});
+		// $(function() {
+			// $( "#dropbox" ).droppable({
+				// drop: function( event, ui ) {
+				// }
+			// });
+		// });
 
 	</script>
 	
 </head>
-<body>
+<body onload="init();" id="main">
 <?php
 	if(isset($_GET['upload']))
 	{
@@ -132,8 +134,6 @@
 			<input type="submit" value="Upload File">
 		</form>
 	</div> 
-	<div id="dropbox" class="ui-widget-header">
-	
-	</div>
+	<div id="dropbox" class="ui-widget-header"></div>
 </body>
 </html>
