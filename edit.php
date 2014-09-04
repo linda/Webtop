@@ -29,9 +29,15 @@
 		<input type="text" name="number" size="3">
 		<input type="submit" name="effect" value="brighter">
 	</form>
-	<form id="default" method="post" action="edit.php<?php echo '?edit='.$imagetoedit?>">
+	<?php
+	// ============================
+	// Can only undo last edit, so hide "undo" botton if it will have no effect
+	// ============================	
+	if($effect!='undo')
+		echo'<form id="default" method="post" action="edit.php?edit='.$imagetoedit.'">
 		<input type="submit" name="effect" value="undo">
-	</form>
+	</form>'
+	?>
 	<a href="photoapp.php">Back to overview</a>
 </body>
 </html>

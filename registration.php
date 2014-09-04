@@ -1,22 +1,47 @@
+<?php
+	function registerUser ($username, $password){
+		$db = mysqli_connect( 'localhost', 'root', '', 'webtop' );
+		if (mysqli_connect_errno() != 0){
+			echo "Could not establish connection to database";
+		}
+		else {
+		//The actual function
+			$sqlUserName = "Select * FROM user WHERE Username = '$username'";
+			$result = $db->query($sqlUserName);
+			if($result && $result->num_rows)
+				echo "This username already exists";
+			else{
+				$sqlRegData =
+				"Insert INTO user (Username, Password)
+				values ('$username', '$password')";
+				$db->query($sqlRegData);
+			}
+		}
+	}
+?>
+
 <html>
 <head></head>
 <body>
-	<form action="registration.php" method="post">
+	<form action="webtop.php?register" method="post">
 		<fieldset>
 			<legend>Registration</legend>
 			<table>
 				<tr>
 					<td>Username:</td>
-					<td><input type="text" name="username"></td>
+					<td><input type="text" name="newusername"></td>
 				</tr>
 				<tr>
 					<td>Password:</td>
-					<td><input type="password" name="password"></td>
+					<td><input type="password" name="newuserpassword"></td>
 				</tr>
 			</table>
-			<p><input type="submit" value="Registration">
+			<p><input type="submit" value="Register">
 			<input type="reset" name="Reset"></p>
 		</fieldset>
 	</form>
-	<?php
+	
+<?php
+	if(isset($_POST['newusername']) && isset($_POST['newuserpassword']))
+		registerUser($_POST['newusername'], md5($_POST['newuserpassword']));
 ?>

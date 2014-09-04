@@ -59,7 +59,7 @@
 		</form>
 		<a href="webtop.php?register">Registrieren</a>
 	<?php
-		if ($_POST!=NULL){
+		if (isset($_POST['username']) && isset ($_POST['password'])){
 			$who = $_POST['username'];
 			$how = $_POST['password'];
 
