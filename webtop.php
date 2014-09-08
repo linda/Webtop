@@ -27,15 +27,8 @@
 	?>
 <?php
 	if (isset($_COOKIE['username'])) {
-		$_SESSION['username']=$_COOKIE['username'];
+	$_SESSION['username']=$_COOKIE['username'];
 	}
-	if(isset($_POST['stayloggedin'])){
-		setcookie('username', $_POST['username'], time()+60000);
-	}
-	else if(isset($_POST['username'])){
-		setcookie('username', "");
-	}
-
 	// ============================
 	// 	Default values set for session variables that save
 	//	state of the applications; all windows set to closed etc.

@@ -1,4 +1,11 @@
 <?php
+		// ============================
+		// Contains both php function for login and 
+		// HTML part of the login form.
+		// Also contains GET link to the registration form.
+		// ============================	
+
+
 		function authenticateuser($user, $password){
 			// ============================
 			// If possible later replace this simple authentication with one using LDAP
@@ -57,14 +64,19 @@
 				<input type="reset" name="Zuruecksetzen"></p>
 			</fieldset>
 		</form>
-		<a href="webtop.php?register">Registrieren</a>
+		<a href="webtop.php?register">Register</a>
 	<?php
 		if (isset($_POST['username']) && isset ($_POST['password'])){
 			$who = $_POST['username'];
 			$how = $_POST['password'];
-
 			if ( authenticateuser($who, $how) == TRUE) {
 				$_SESSION['username'] = $who;
+				if(isset($_POST['stayloggedin'])){
+				setcookie('username', $_POST['username'], time()+60000);
+				}
+				else if(isset($_POST['username'])){
+				setcookie('username', "");
+				}
 				header( 'Location: webtop.php' ) ;
 				
 				} else $wronglogin = 'Wrong username and password combination. ';
