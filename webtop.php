@@ -27,7 +27,7 @@
 	?>
 <?php
 	if (isset($_COOKIE['username'])) {
-	$_SESSION['username']=$_COOKIE['username'];
+		$_SESSION['username']=$_COOKIE['username'];
 	}
 	// ============================
 	// 	Default values set for session variables that save

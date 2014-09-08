@@ -72,10 +72,10 @@
 			if ( authenticateuser($who, $how) == TRUE) {
 				$_SESSION['username'] = $who;
 				if(isset($_POST['stayloggedin'])){
-				setcookie('username', $_POST['username'], time()+60000);
+					setcookie('username', $_POST['username'], time()+60000);
 				}
 				else if(isset($_POST['username'])){
-				setcookie('username', "");
+					setcookie('username', "");
 				}
 				header( 'Location: webtop.php' ) ;
 				
