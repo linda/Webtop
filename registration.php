@@ -15,7 +15,7 @@
 				"Insert INTO user (Username, Password)
 				values ('$username', '$password')";
 				$db->query($sqlRegData);
-				echo "User" . $username . " is registered. I think.";
+				echo "User " . $username . " is registered. I think.";
 			}
 		}
 	}

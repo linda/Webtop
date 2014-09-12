@@ -140,6 +140,12 @@
 				include 'photoDialog.php';
 			}
 		?>
+	<div id="rssDialog" class="dialog" title="RSS-Feeds">
+		<?php
+			if (isset($_SESSION['username'])){
+				include 'rssDialog.php';
+			}
+		?>
 	<?php
 		if(isset($_SESSION['username']) ){
 			include 'application.php';

@@ -16,4 +16,4 @@
 <img src="04.png" 
 	alt="Icon3" 
 	id="vase3" 
-	class="opener draggable ui-widget-content">	
+	class="draggable ui-widget-content">	

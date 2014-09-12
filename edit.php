@@ -31,7 +31,7 @@
 	</form>
 	<?php
 	// ============================
-	// Can only undo last edit, so hide "undo" botton if it will have no effect
+	// Can only undo one edit, so hide "undo" botton if it will have no effect
 	// ============================	
 	if($effect!='undo')
 		echo'<form id="default" method="post" action="edit.php?edit='.$imagetoedit.'">

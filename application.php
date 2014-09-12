@@ -73,7 +73,7 @@
 				}
 			});
 			// ============================
-			//	Functions called on double-click on one of the icons.
+			//	Functions called on double-click on vase1 icon.
 			//  1) The dialog window is opened
 			//  2) Ajax request is sent to save the new state in savestate.php
 			//		where is will be saved in sessions/the database
@@ -135,10 +135,10 @@
 				}
 			});
 			// ============================
-			//	Functions when there is a double-click on one of the icons:
+			//	Functions when there is a double-click on vase2 icon:
 			//  1) The dialog window is opened
 			//  2) Ajax request is sent to save the new state in savestate.php
-			//		where is will be saved in session vars
+			//		where is will be saved in session vars and the db
 			// ============================
 			$( "#vase2" ).dblclick(function() {
 				$( "#photoDialog" ).dialog( "open" );
@@ -156,6 +156,64 @@
 					})
 			});
 	});	
+
+	// ============================
+	//	Function for everything to do with the dialog containing the rss feed app.
+	//  Ajax request for saving the app's state currently not implemented.
+	// ============================
+	$(function() {
+			$( "#rssDialog" ).dialog({
+				autoOpen: false,
+				height: 400,
+				width: 670,
+				left: 200,
+				top: 100,
+			// ============================
+			//	On closing the dialog, send ajax request to save new state of the window:
+			// ============================			
+				// close: function() {
+					// $.ajax({
+						// type: "POST",
+						// url: "savestate.php",
+						// data: { photoDialog: {open: 0, left: 0, top: 0} },
+						// dataType: "text"
+						// })
+				// },
+				// dragStop: function( event, ui ) {
+					// $.ajax({
+						// type: "POST",
+						// url: "savestate.php",
+						// data: {
+							// photoDialog: {
+								// open: 1,
+								// left: ui.position.left, 
+								// top: ui.position.top
+								// }
+							// },
+						// dataType: "text"
+						// })
+				// }
+			});
+			// ============================
+			//	Functions called on double-click on vase3 icon:
+			// ============================
+			$( "#vase3" ).dblclick(function() {
+				$( "#rssDialog" ).dialog( "open" );
+				// $.ajax({
+					// type: "POST",
+					// url: "savestate.php",
+					// data:{
+							// photoDialog: {
+								// open: 1,
+								// left: $( "#photoDialog" ).parent().position().left, 
+								// top: $( "#photoDialog" ).parent().position().top
+							// }
+						// },
+					// dataType: "text"
+					// })
+			});
+	});	
+
 	
 	// ============================
 	//	Functions for restoring state of windows, icons position from sessions variables
